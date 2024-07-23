@@ -6,14 +6,19 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
-
+	<context:property-placeholder location = "classpath:application.properties" />
     <bean id="classicalMusic"
-        class="koroler.springcourse.SpringIoC.ClassicalMusic">
+        class="koroler.springcourse.SpringIoCDI.ClassicalMusic">
     </bean>
     
     <bean id="musicPlayer"
-        class="koroler.springcourse.SpringIoC.MusicPlayer"> 
-        <constructor-arg ref = "classicalMusic"/>
+        class="koroler.springcourse.SpringIoCDI.MusicPlayer"> 
+        <!--  constructor-arg ref = "metalMusic"/-->
+        <property name = "music" ref = "metalMusic"/>
+        <property name = "RadioStationName" value = "${RadioStationName.name1}"/>
     </bean>
 
+	<bean id="metalMusic"
+        class="koroler.springcourse.SpringIoCDI.MetalMusic">
+    </bean>
 </beans>
