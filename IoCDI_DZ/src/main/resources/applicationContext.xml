@@ -14,7 +14,21 @@
         </bean>
         
         <bean id = "musicPlayer" class = "koroler.Spring.IoCDI_DZ.MusicPlayer">
-         <constructor-arg name = "music" ref = "classicalMusic"/>
+         <constructor-arg name = "music">
+         <list>
+         	<ref bean = "classicalMusic"/>
+         	<ref bean = "metalMusic"/>
+         	<ref bean = "punkMusic"/>
+         </list>
+          </constructor-arg>
           <constructor-arg name = "RadioStationName" value = "${radiostation.name}"/>
+        </bean>
+        
+        <bean id = "metalMusic" class = "koroler.Spring.IoCDI_DZ.MetalMusic">
+        <constructor-arg value = "${metalmusic.name}"/> 
+        </bean>
+        
+        <bean id = "punkMusic" class = "koroler.Spring.IoCDI_DZ.PunkMusic">
+        <constructor-arg value = "${punkmusic.name}"/> 
         </bean>
      </beans>

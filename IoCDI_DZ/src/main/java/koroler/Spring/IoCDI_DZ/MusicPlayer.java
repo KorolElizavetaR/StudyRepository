@@ -1,7 +1,11 @@
 package koroler.Spring.IoCDI_DZ;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
+
 public class MusicPlayer {
-private Music music;
+private List<Music> music;
 private String RadioStationName;
 
 public MusicPlayer()
@@ -9,20 +13,24 @@ public MusicPlayer()
 	RadioStationName = null;
 	music = null;
 }
-public MusicPlayer(Music music)
+public MusicPlayer(List <Music> music)
 {
 	this();
-	setMusic(music);
+	setMusicList(music);
 }
-public MusicPlayer(Music music, String RadioStationName)
+public MusicPlayer(List <Music> music, String RadioStationName)
 {
 	this(music);
 	setRadioStationName(RadioStationName);
 }
 
-public void setMusic(Music music)
+public void setMusicList(List <Music> music)
 {
-	this.music = music;
+	this.music = new ArrayList<>();
+	for (Music mus : music)
+	{
+		this.music.add(mus);
+	}
 }
 
 public void setRadioStationName(String RadioStationName) {
@@ -31,7 +39,12 @@ public void setRadioStationName(String RadioStationName) {
 
 public String playMusic()
 {
-	return "Playing: " + music.getName() + "; Radio Station: " + RadioStationName;
+	String str = "";
+	for (Music mus : music)
+	{
+	str += "Playing: " + mus.getName() + "; Radio Station: " + RadioStationName + "\n";
+	}
+	return str;
 }
 
 }
