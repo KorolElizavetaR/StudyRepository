@@ -9,27 +9,17 @@
         
         <context:property-placeholder location = "classpath:application.properties"/>
         
-        <bean id = "classicalMusic" class = "koroler.Spring.IoCDI_DZ.ClassicalMusic" scope = "prototype">
+        <bean id = "classicalMusic" class = "koroler.spring.InitDestroy.ClassicalMusic" scope = "prototype">
         <constructor-arg value = "${classicalmusic.name}"/> 
         </bean>
         
-        <bean id = "musicPlayer" class = "koroler.Spring.IoCDI_DZ.MusicPlayer">
-         <constructor-arg name = "music">
-         <list>
-         	<ref bean = "classicalMusic"/>
-         	<ref bean = "metalMusic"/>
-         	<ref bean = "punkMusic"/>
-         </list>
-          </constructor-arg>
+        <bean id = "musicPlayer" class = "koroler.spring.InitDestroy.MusicPlayer"
+        	init-method = "init" destroy-method = "destroy">
+         <constructor-arg name = "music" ref = "classicalMusic"/>
           <constructor-arg name = "RadioStationName" value = "${radiostation.name}"/>
-          <property name="MusicList" ref = "classicalMusic"></property>
         </bean>
         
-        <bean id = "metalMusic" class = "koroler.Spring.IoCDI_DZ.MetalMusic">
+        <bean id = "metalMusic" class = "koroler.spring.InitDestroy.MetalMusic" scope = "prototype">
         <constructor-arg value = "${metalmusic.name}"/> 
-        </bean>
-        
-        <bean id = "punkMusic" class = "koroler.Spring.IoCDI_DZ.PunkMusic">
-        <constructor-arg value = "${punkmusic.name}"/> 
         </bean>
      </beans>
