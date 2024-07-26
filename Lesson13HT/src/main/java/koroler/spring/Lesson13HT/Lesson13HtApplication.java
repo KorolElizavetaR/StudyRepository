@@ -1,13 +1,14 @@
 package koroler.spring.Lesson13HT;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-@SpringBootApplication
 public class Lesson13HtApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Lesson13HtApplication.class, args);
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ConfigClass.class);
+		MusicPlayer player = context.getBean("musicPlayer", MusicPlayer.class);
+		System.out.println(player.PlayMusic());
+		context.close();
 	}
 
 }
