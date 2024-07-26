@@ -2,26 +2,24 @@ package koroler.spring.annotations;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component ("musicPlayer")
 public class MusicPlayer {
 	private Music music;
-	
-//	@Autowired
-//	public MusicPlayer (@Qualifier ("classicalMusic")Music music)
-//	{
-//		setMusic(music);
-//	}
+	@Value("${radiostation.name}")
+	String RadiostationName;
 	
 	@Autowired
-	public void setMusic(@Qualifier ("metalMusic") Music music) {
+	@Qualifier ("metalMusic")
+	public void setMusic(Music music) {
 		this.music = music;
 	}
 	
 	public String PlayMusic()
 	{
-		return "Playing:" + music.getSong();
+		return "Playing:" + music.getName() + ". Radio station: " + RadiostationName;
 	}
 
 }

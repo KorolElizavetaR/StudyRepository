@@ -1,13 +1,16 @@
 package koroler.spring.annotations;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component ("classicalMusic")
 public class ClassicalMusic implements Music{
-
+	@Value("${classicalmusic.name}")
+	String name;
+	
 	@Override
-	public String getSong() {
-		return "Hungarian Rhapsody";
+	public String getName() {
+		return name;
 	}
 
 }
