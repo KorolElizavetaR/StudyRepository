@@ -1,8 +1,8 @@
-package koroler.spring.JavaAnnotationsOnly;
+package koroler.spring.AnnotationsButConfigFileIsEmpty;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-public class JavaAnnotationsOnlyApplication {
+public class AnnotationsButConfigFileIsEmptyApplication {
 
 	public static void main(String[] args) {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ConfigClass.class);
