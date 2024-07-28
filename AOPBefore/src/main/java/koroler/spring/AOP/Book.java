@@ -1,20 +1,21 @@
 package koroler.spring.AOP;
 
-public class Books {
+public class Book {
 	String name;
 	String author;
-	public Books(String name, String author) {
-		setName(name);
-	}
+//
+//	public Book(String name, String author) {
+//		setName(name);
+//	}
 	
 	public void setName(String name)
 	{
 		this.name = name;
 	}
-	
-	public void setAuthor(String name)
+
+	public void setAuthor(String author)
 	{
-		this.name = name;
+		this.author = author;
 	}
 	
 	public String getBook()
