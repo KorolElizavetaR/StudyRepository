@@ -24,28 +24,16 @@ public class ConfigClass {
 		return new Book();
 	}
 	
-//	@Bean
-//	public BookProperties bookProperties()
-//	{
-//		return new BookProperties();
-//	}
-	
 	@Bean
-	public UniversityLibrary uniLibrary()
+	public Library library()
 	{
-		return new UniversityLibrary();
+		return new Library();
 	}
 	
-//	@Bean
-//	public SchoolLibrary schoolLibrary()
-//	{
-//	return new SchoolLibrary();
-//	}
-//	
-//	@Bean
-//	public LoggingAspect logAspect()
-//	{
-//		return new LoggingAspect();
-//	}
+	@Bean
+	public LoggingAndSecurityAspect loggingAspect()
+	{
+		return new LoggingAndSecurityAspect();
+	}
 
 }

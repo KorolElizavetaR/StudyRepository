@@ -18,8 +18,13 @@ public class Book {
 		this.author = author;
 	}
 	
-	public String getBook()
+	public String getAuthor()
 	{
-		return name + " by " + author;
+		return author;
+	}
+	
+	public String getName()
+	{
+		return name;
 	}
 }
