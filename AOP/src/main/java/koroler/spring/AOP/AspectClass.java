@@ -16,7 +16,7 @@ public class AspectClass {
 	@Pointcut ("execution(* koroler.spring.AOP.Library.getBook(Integer))")
 	private void PointcutForGetBook(){}
 	
-	@Pointcut ("execution(* koroler.spring.AOP.Library.addBook(..))")
+	@Pointcut ("execution(Boolean koroler.spring.AOP.Library.addBook(..))")
 	private void PointcutForAddBook(){}
 
 	@Pointcut ("execution(* koroler.spring.AOP.Library.getBooks()")
