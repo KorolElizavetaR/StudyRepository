@@ -27,16 +27,11 @@ public class ConfigClass {
 		return new Library();
 	}
 	
-//	@Bean
-//	public AspectClass myAspect()
-//	{
-//		return new AspectClass();
-//	}
-	
 	@Bean
-	public MyAspects aspects()
+	public AspectClass myAspect()
 	{
-		return new MyAspects();
+		return new AspectClass();
 	}
+	
 
 }
