@@ -1,8 +1,5 @@
 package koroler.spring.AOP;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -31,9 +28,9 @@ public class ConfigClass {
 	}
 	
 	@Bean
-	public LoggingAndSecurityAspect loggingAspect()
+	public AspectClass myAspect()
 	{
-		return new LoggingAndSecurityAspect();
+		return new AspectClass();
 	}
 
 }

@@ -8,6 +8,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 @ConfigurationProperties("list")
 public class Library {
+	private final Integer CAPACITY = 8;
 	List<Book> books;
 	
 	public void setBooks(List<Book> books) {
@@ -15,7 +16,8 @@ public class Library {
 	for (Book book: books)
 	{
 		this.books.add(book);
-	} }
+	}
+	}
 	
 	public String getBook(Integer id)
 	{
@@ -34,12 +36,14 @@ public class Library {
 		System.out.println(book.getName() + " by " + book.getAuthor());
 	}
 	
-	public void addBook(AnnotationConfigApplicationContext context, String name, String author)
+	public Boolean addBook(AnnotationConfigApplicationContext context, String name, String author)
 	{
 		Book book = context.getBean(("books"), Book.class);
+		if (books.size() >= CAPACITY)
+		return false;
 		book.setName(name);
 		book.setAuthor(author);
 		this.books.add(book);
-		System.out.println("Book is succesfully added");
+		return true;
 	}
 }
