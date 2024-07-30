@@ -3,10 +3,12 @@ package koroler.spring.AOP;
 public class Book {
 	String name;
 	String author;
-//
-//	public Book(String name, String author) {
-//		setName(name);
-//	}
+	public Book() {};
+
+	public Book(String name, String author) {
+		setName(name);
+		setAuthor(author);
+	}
 	
 	public void setName(String name)
 	{
