@@ -1,5 +1,6 @@
 package koroler.spring.AOP;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.aspectj.lang.JoinPoint;
@@ -12,17 +13,18 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 
+@Aspect
 public class AspectClass {
 	@Pointcut ("execution(* koroler.spring.AOP.Library.getBook(Integer))")
 	private void PointcutForGetBook(){}
 	
-	@Pointcut ("execution(Boolean koroler.spring.AOP.Library.addBook(..))")
+	@Pointcut ("execution(* koroler.spring.AOP.Library.add*(..))")
 	private void PointcutForAddBook(){}
 
-	@Pointcut ("execution(* koroler.spring.AOP.Library.getBooks()")
+	@Pointcut ("execution(* koroler.spring.AOP.Library.getBooks())")
 	private void PointcutForGetBooks(){}
 	
-	@Before ("execution(* koroler.spring.AOP.Library.*(..)")
+	@Before ("execution(* koroler.spring.AOP.Library.*(..))")
 	public void AnnoyingAdvice(List<Book> books)
 	{
 		System.out.println("Annoying Advice!");
@@ -71,11 +73,11 @@ public class AspectClass {
 //		System.out.println("\tAttempt to add:" + arr.get(0) + " by " + arr.get(1));
 //	}
 	
-//	@Around ("PointcutForAddBook()")
-//	public Object AdviceForAddBook(JoinPoint joinpoint, ProceedingJoinPoint jpoint) throws Throwable
-//	{
+	@Around ("PointcutForAddBook()")
+	public Object AdviceForAddBook(ProceedingJoinPoint jpoint) throws Throwable // JoinPoint joinpoint
+	{
 //		List<String> arr = new ArrayList<>();
-//		Object [] arguments = jpoint.getArgs();
+//		Object [] arguments = joinpoint.getArgs();
 //		for (Object object: arguments)
 //		{
 //			if (object instanceof String)
@@ -84,9 +86,11 @@ public class AspectClass {
 //			}
 //		}
 //		System.out.println("\tAttempt to add:" + arr.get(0) + " by " + arr.get(1));
-//		Object AddBookRes = jpoint.proceed();
-//		if ((Boolean) AddBookRes) System.out.println("Book is succesfully added.");
-//		else System.out.println("Library is overloaded.");
-//		return AddBookRes;
-//	}
+		System.out.println("\tAttempt to add book.");
+		
+		Object AddBookRes = jpoint.proceed();
+		if ((Boolean) AddBookRes) System.out.println("Book is succesfully added.");
+		else System.out.println("Library is overloaded.");
+		return AddBookRes;
+	}
 }
