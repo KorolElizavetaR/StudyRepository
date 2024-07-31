@@ -2,6 +2,7 @@ package koroler.spring.AOP;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -40,23 +41,23 @@ public class AspectClass {
 		}
 	}
 	
-	@AfterThrowing (pointcut = "PointcutForGetBook()", throwing = "exc")
-	public void MyAdvice(JoinPoint jpoint, Throwable exc)
-	{
-		MethodSignature methodSignature = (MethodSignature)jpoint.getSignature();
-		System.out.println("methodSignature" + methodSignature);
-		if (methodSignature.getName().equals("getBook"))
-		{
-			Object [] arguments = jpoint.getArgs();
-			for (Object object: arguments)
-			{
-				if (object instanceof Integer)
-				{
-					System.out.println(exc);
-				}
-			}
-		}
-	}
+//	@AfterThrowing (pointcut = "PointcutForGetBook()", throwing = "exc")
+//	public void MyAdvice(JoinPoint jpoint, Throwable exc)
+//	{
+//		MethodSignature methodSignature = (MethodSignature)jpoint.getSignature();
+//		System.out.println("methodSignature" + methodSignature);
+//		if (methodSignature.getName().equals("getBook"))
+//		{
+//			Object [] arguments = jpoint.getArgs();
+//			for (Object object: arguments)
+//			{
+//				if (object instanceof Integer)
+//				{
+//					System.out.println(exc);
+//				}
+//			}
+//		}
+//	}
 	
 //	@Before ("PointcutForAddBook()")
 //	public void AdviceForGetBook(JoinPoint jpoint)
@@ -76,21 +77,45 @@ public class AspectClass {
 	@Around ("PointcutForAddBook()")
 	public Object AdviceForAddBook(ProceedingJoinPoint jpoint) throws Throwable // JoinPoint joinpoint
 	{
-//		List<String> arr = new ArrayList<>();
-//		Object [] arguments = joinpoint.getArgs();
-//		for (Object object: arguments)
-//		{
-//			if (object instanceof String)
-//			{
-//				arr.add((String) object);
-//			}
-//		}
-//		System.out.println("\tAttempt to add:" + arr.get(0) + " by " + arr.get(1));
-		System.out.println("\tAttempt to add book.");
+		List<String> arr = new ArrayList<>();
+		Object [] arguments = jpoint.getArgs();
+		for (Object object: arguments)
+		{
+			if (object instanceof String)
+			{
+				arr.add((String) object);
+			}
+		}
+		System.out.println("\tAttempt to add:" + arr.get(0) + " by " + arr.get(1));
 		
 		Object AddBookRes = jpoint.proceed();
-		if ((Boolean) AddBookRes) System.out.println("Book is succesfully added.");
-		else System.out.println("Library is overloaded.");
+		if ((Boolean) AddBookRes) System.out.println("\tBook succesfully added.");
+		else System.out.println("\tLibrary is overloaded.");
 		return AddBookRes;
+	}
+	
+	@Around ("PointcutForGetBook()")
+	public Object AroundAdviceForGetBook(ProceedingJoinPoint jpoint) throws Exception // JoinPoint joinpoint
+	{
+		Object[] objArr = jpoint.getArgs();
+		Integer indexInteger = (Integer) objArr[0];//вообще так делать по-пидорски, в AdviceForAddBook лучше
+		System.out.println("\tAttempt to get book...");
+		
+		Object GetBookRes = null;
+		try
+		{
+			GetBookRes = jpoint.proceed();
+			GetBookRes += (": #"+ indexInteger);
+		}
+		catch(Exception ex)
+		{
+			System.out.println(indexInteger + " is out of bounds. " + ex);
+			//return "Book with index " + indexInteger + " is not in the DB.";
+			throw ex;
+		} 
+		catch (Throwable e) {
+			e.printStackTrace();
+		}
+		return GetBookRes;
 	}
 }
