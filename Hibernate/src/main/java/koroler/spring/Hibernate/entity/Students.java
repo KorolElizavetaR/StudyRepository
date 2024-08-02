@@ -1,5 +1,6 @@
 package koroler.spring.Hibernate.entity;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import jakarta.persistence.Column;
@@ -10,7 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table
+@Table (name = "students")
 public class Students {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -39,9 +40,10 @@ public class Students {
 	
 	@Override
 	public String toString() {
-		return "rec_book_id = " + rec_book_id + "; last_name = " + last_name + "; birth_date = " +
-		birth_date.getTime() + "; enroll_date = " + enroll_date.getTime() + "; group_no = " 
-		+ group_no;
+		return "rec_book_id = " + rec_book_id + "; last_name = " + last_name + "; birth_date = " + 
+				(new SimpleDateFormat("dd MMM yyyy")).format(birth_date.getTime()) +
+	 "; enroll_date = " + enroll_date.get(Calendar.YEAR) + "; group_no = " 
+	+ group_no;
 	}
 	
 	public void setBirth_date(Calendar birth_date) {
