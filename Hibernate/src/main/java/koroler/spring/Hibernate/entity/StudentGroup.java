@@ -14,9 +14,8 @@ public class StudentGroup {
 	private String group_no;
 	@Column(name = "faculty")
 	private String faculty;
-	public StudentGroup() {
-		// TODO Auto-generated constructor stub
-	}
+	
+	public StudentGroup() {	}
 	public StudentGroup(String group_no, String faculty)
 	{
 		setFaculty(faculty);
@@ -25,8 +24,7 @@ public class StudentGroup {
 	
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
+		return "group_no = " + group_no + "; faculty = " + faculty;
 	}
 	
 	public String getFaculty() {
