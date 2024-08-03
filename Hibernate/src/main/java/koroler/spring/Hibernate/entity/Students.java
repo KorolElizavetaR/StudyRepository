@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -27,24 +29,36 @@ public class Students {
 	@Column(name = "enroll_date")
 	Calendar enroll_date;
 	
-	@Column(name = "group_no")
-	String group_no;
+	//@Column(name = "group_no")
+	//String group_no;
+	@ManyToOne
+	@JoinColumn(name = "group_no")
+	StudentGroup student_group;
 	
 	public Students() {	}
-	public Students(String last_name, String group_no, Calendar birth_date, Calendar enroll_date) {
+	public Students(String last_name, Calendar birth_date, Calendar enroll_date, StudentGroup student_group) {
 		setLast_name(last_name);
-		setGroup_no(group_no);
+		//setGroup_no(group_no);
+		setStudent_group(student_group);
 		setBirth_date(birth_date);
 		setEnroll_date(enroll_date);
 	}
+	
+//	@Override
+//	public String toString() {
+//		return "rec_book_id = " + rec_book_id + "; last_name = " + last_name + "; birth_date = " + 
+//				(new SimpleDateFormat("dd MMM yyyy")).format(birth_date.getTime()) +
+//	 "; enroll_date = " + enroll_date.get(Calendar.YEAR) + "; group_no = " 
+//	+ group_no;
+//	}
 	
 	@Override
 	public String toString() {
 		return "rec_book_id = " + rec_book_id + "; last_name = " + last_name + "; birth_date = " + 
 				(new SimpleDateFormat("dd MMM yyyy")).format(birth_date.getTime()) +
-	 "; enroll_date = " + enroll_date.get(Calendar.YEAR) + "; group_no = " 
-	+ group_no;
+	 "; enroll_date = " + enroll_date.get(Calendar.YEAR) + ";" + student_group;
 	}
+	
 	
 	public void setBirth_date(Calendar birth_date) {
 		this.birth_date = birth_date;
@@ -54,8 +68,11 @@ public class Students {
 		this.enroll_date = enroll_date;
 	}
 	
-	public void setGroup_no(String group_no) {
-		this.group_no = group_no;
+//	public void setGroup_no(String group_no) {
+//		this.group_no = group_no;
+//	}
+	public void setStudent_group(StudentGroup student_group) {
+		this.student_group = student_group;
 	}
 	
 	public void setLast_name(String last_name) {
@@ -74,8 +91,11 @@ public class Students {
 		return enroll_date;
 	}
 	
-	public String getGroup_no() {
-		return group_no;
+//	public String getGroup_no() {
+//		return group_no;
+//	}
+	public StudentGroup getStudent_group() {
+		return student_group;
 	}
 	
 	public String getLast_name() {

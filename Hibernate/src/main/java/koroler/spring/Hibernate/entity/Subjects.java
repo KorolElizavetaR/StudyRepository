@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "subject")
+@Table(name = "subjects")
 public class Subjects {
 	@Id
 	@Column(name = "subject_id")
@@ -17,6 +17,11 @@ public class Subjects {
 	
 	@Column (name = "subject_name")
 	String subject_name;
+	
+	@Override
+	public String toString() {
+		return "subject_id = " + subject_id + "; subject_name = " + subject_name;
+	}
 	
 	public void setSubject_id(int subject_id) {
 		this.subject_id = subject_id;
