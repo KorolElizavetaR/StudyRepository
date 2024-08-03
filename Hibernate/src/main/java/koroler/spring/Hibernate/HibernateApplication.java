@@ -11,8 +11,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-import jakarta.persistence.Query;
-
 public class HibernateApplication {
 
 	@SuppressWarnings({ "deprecation", "unchecked" })
@@ -28,11 +26,11 @@ public class HibernateApplication {
 		try
 		{
 		transaction = session.beginTransaction();
-		//List <Students> st = session.createQuery("from Students").getResultList();
+		List <Students> st = session.createQuery("from Students").getResultList();
 		//List <Students> st = session.createQuery("select distinct student.last_name, AVG(score) from Exams group by student.last_name").getResultList();
 		//Query query = session.createQuery("select subjects.subject_name, student.last_name, score from Exams");
 		//List result = query.getResultList();
-			//System.out.println(result);
+		System.out.println(st);
 		transaction.commit();}
 		catch(Exception ex)
 		{

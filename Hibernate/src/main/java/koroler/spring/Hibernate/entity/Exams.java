@@ -15,7 +15,7 @@ public class Exams {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	@Column (name = "student_res_id")
-	int student_res_id;
+	Integer student_res_id;
 	
 //	@Column (name = "subject_id")
 //	int subject_id;
