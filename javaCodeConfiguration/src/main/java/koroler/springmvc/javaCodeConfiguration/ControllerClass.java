@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class ControllerClass {
 	@GetMapping ("/helloWorld")
 	public String helloWorld() {
-		return "hello world";
+		return "hello world"; //html docname.Если точнее, возвращает имя представления.
 	}
 }
