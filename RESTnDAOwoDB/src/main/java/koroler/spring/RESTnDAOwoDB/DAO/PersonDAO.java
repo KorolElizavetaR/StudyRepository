@@ -27,19 +27,30 @@ public class PersonDAO {
 	
 	public Person getPerson(Integer id)
 	{
-		try
-		{
-			return people.get(id);
-		}
-		catch (Exception ex)
-		{
-			return nullPerson;
-		}
+		return people.stream().filter(person -> person.getID() == id).findAny().orElse(nullPerson);
 	}
 	
 	public void addPerson(Person person)
 	{
 		person.setID(counter++);
 		people.add(person);
+	}
+	
+	public void update(Integer id, Person person)
+	{
+		Person UpdatePerson = people.get(id);
+		if (!(person.getName().isEmpty() || person.getName().isBlank()))
+		{
+			UpdatePerson.setName(person.getName());
+		}
+		if (!(person.getEmail().isEmpty() || person.getEmail().isBlank()))
+		{
+			UpdatePerson.setEmail(person.getEmail());
+		}
+	}
+	
+	public void removePerson(int id)
+	{
+		people.removeIf(p -> p.getID() == id);
 	}
 }

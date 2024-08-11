@@ -7,6 +7,11 @@
 <body>
 	<h1 th:text = "|Hello, ${person.getName()}!|"></h1>
 	<p th:text = "|Your email: ${person.getEmail()}|"></p>
-	<a href = "/people">Wanna get back?</a>
+	<a th:href = "@{${person.getID()} + '/edit'}" th:text="|Update yourself?|"></a>
+	<form th:method = "DELETE" th:action ="@{/people/{id}(id = ${person.getID()})}">
+		<input type = "submit" value = "Delete me"/>
+	</form>
+	<br/>
+	<a href = "/people"><i>Wanna get back?</i></a>
 </body>
 </html>

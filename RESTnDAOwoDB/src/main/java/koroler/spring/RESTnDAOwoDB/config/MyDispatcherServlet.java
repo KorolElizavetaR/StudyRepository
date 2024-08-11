@@ -1,9 +1,13 @@
 package  koroler.spring.RESTnDAOwoDB.config;
 
+import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class MyDispatcherServlet extends AbstractAnnotationConfigDispatcherServletInitializer{
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
 
+public class MyDispatcherServlet extends AbstractAnnotationConfigDispatcherServletInitializer{
+	    
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
 		return null;
