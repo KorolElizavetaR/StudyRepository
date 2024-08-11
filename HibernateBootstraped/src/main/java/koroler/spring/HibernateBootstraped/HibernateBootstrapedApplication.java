@@ -26,7 +26,9 @@ public class HibernateBootstrapedApplication {
 		try
 		{
 		transaction = session.beginTransaction();
+		@SuppressWarnings("deprecation")
 		Query query = session.createQuery("from Students");
+		@SuppressWarnings("unchecked")
 		List <Students> list = query.getResultList();
 		for (Students element:list)
 		{
