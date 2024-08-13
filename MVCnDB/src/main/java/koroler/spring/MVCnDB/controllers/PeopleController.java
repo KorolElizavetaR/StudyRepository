@@ -1,5 +1,7 @@
 package koroler.spring.MVCnDB.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,9 +32,19 @@ public class PeopleController {
 	}
 	
 	@GetMapping("/new")
-	public String newPerson()
+	public String newPerson(@ModelAttribute("person") Person person)
 	{
 		return "people/new";
-		
+	}
+	
+	@PostMapping()
+	public String addPerson(Person person, BindingResult bindingResult)
+	{//@ModelAttribute("person") 
+		if (bindingResult.hasErrors())
+		{
+			return "people/new";
+		}
+		personDAO.addPerson(person);
+		return "redirect:/people";
 	}
 }

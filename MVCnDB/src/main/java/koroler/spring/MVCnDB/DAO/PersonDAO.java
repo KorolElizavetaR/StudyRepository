@@ -13,7 +13,7 @@ import koroler.spring.MVCnDB.models.Person;
 
 @Component
 public class PersonDAO {
-	private static Integer counter = 0;
+	private static Integer counter = 1;
 	static String URL = "jdbc:postgresql://localhost:5432/testdb1";
 	static String username = "postgres";
 	static String password = "Emsobak321";
@@ -32,7 +32,8 @@ public class PersonDAO {
 	
 	public List<Person> getList()
 	{
-		 List<Person>people= new ArrayList<>();
+		// Мысля: не лучше ли один раз записать в массив из БД, а потом уже обращаться к нему?
+		 List<Person> people = new ArrayList<>();
 		 Statement statement;
 		 try 
 		 {	statement = conn.createStatement();
@@ -40,7 +41,7 @@ public class PersonDAO {
 			while (res.next())
 			{
 				Person person = new Person();
-				person.setID(res.getInt("id"));
+				person.setID(res.getInt("id")); ++counter;
 				person.setName(res.getString("name"));
 				person.setEmail(res.getString("email"));
 				people.add(person);
@@ -49,6 +50,19 @@ public class PersonDAO {
 			e.printStackTrace();
 		}
 		return people;		
+	}
+	
+	public void addPerson(Person person)
+	{
+		 Statement statement;
+		 try 
+		 {	statement = conn.createStatement();
+			String SQLseq = "INSERT INTO person VALUES (" + counter++ +
+					", '" + person.getName() + "', '" + person.getEmail() + "')";
+			statement.executeUpdate(SQLseq);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
