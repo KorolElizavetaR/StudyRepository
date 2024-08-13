@@ -5,6 +5,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
@@ -13,8 +14,11 @@ import org.thymeleaf.spring6.SpringTemplateEngine;
 import org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring6.view.ThymeleafViewResolver;
 
+import koroler.spring.MVCnDB.DAO.*;
+
 @Configuration
 @ComponentScan("korol.spring.MVCnDB")
+@PropertySource("classpath:application.properties")
 @EnableWebMvc
 public class ConfigClass implements WebMvcConfigurer {
 	private final ApplicationContext applicationContext;
@@ -24,6 +28,12 @@ public class ConfigClass implements WebMvcConfigurer {
 	{
 		this.applicationContext = applicationContext;
 	}
+	
+//	@Bean 
+//	public PersonDAO personDAO()
+//	{
+//		return new PersonDAO();
+//	}
 	
 	@Bean 
 	public HiddenHttpMethodFilter hiddenHttpMethodFilter()

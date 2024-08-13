@@ -47,4 +47,11 @@ public class PeopleController {
 		personDAO.addPerson(person);
 		return "redirect:/people";
 	}
+	
+	@GetMapping("/{id}")
+	public String showPerson(Model model, @PathVariable ("id") Integer id)
+	{
+		model.addAttribute("person", personDAO.getPerson(id));
+		return "people/person";
+	}
 }
