@@ -10,5 +10,7 @@
 	<br/>
 	<hr/>
 		<a href = "/people">Wanna get back?</a>
+		<br/>
+		<a th:href="@{/people/{id}/edit(id = ${person.getId()})}" th:text="|Or having an urge to change yourself?)|"></a>
 </body>
 </html>
