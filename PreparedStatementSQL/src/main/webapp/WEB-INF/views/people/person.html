@@ -12,5 +12,8 @@
 		<a href = "/people">Wanna get back?</a>
 		<br/>
 		<a th:href="@{/people/{id}/edit(id = ${person.getId()})}" th:text="|Or having an urge to change yourself?)|"></a>
+		<form th:method="DELETE" th:action="@{/people/{id}(id=${person.getId()})}">
+    	<input type="submit" value="I would rather delete myself"/>
+</form>
 </body>
 </html>

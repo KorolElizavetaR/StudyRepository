@@ -16,9 +16,12 @@ import koroler.spring.PreparedStatementSQL.models.Person;
 
 @Component
 public class PeopleDAO {
-	final private String SQL_SelectAll = "Select * from person";
-	final private String SQL_GetPerson = SQL_SelectAll + " WHERE id = ?";
-	//final private String SQL_UpdatePerson = "UPDATE person SET name = ?, email = ? WHERE id = ?";
+	final private String SQL_SelectAll = "Select * from person ORDER BY id";//ORDER BY id
+	final private String SQL_Insert = "INSERT INTO person VALUES(?, ?, ?);";
+	final private String SQL_GetPerson = "Select * from person WHERE id = ?";
+	final private String SQL_UpdatePerson = "UPDATE person SET name = ?, email = ? WHERE id = ?";
+	final private String SQL_DeletePerson = "DELETE FROM person WHERE id = ?";
+	
 	static Connection conn;
 	Integer newtindex;
 
@@ -60,12 +63,12 @@ public class PeopleDAO {
 	
 	public void addPerson(Person person)
 	{
-		String SQL_Insert = "INSERT INTO person VALUES(" + newtindex + ", ?, ?);";
 		try
 		{
 			PreparedStatement preparedStatement = conn.prepareStatement(SQL_Insert);
-			preparedStatement.setString(1, person.getName());
-			preparedStatement.setString(2, person.getEmail());
+			preparedStatement.setInt(1, newtindex);
+			preparedStatement.setString(2, person.getName());
+			preparedStatement.setString(3, person.getEmail());
 			preparedStatement.executeUpdate();
 		}
 		catch (Exception e) {
@@ -91,7 +94,6 @@ public class PeopleDAO {
 	
 	public void updatePerson(Integer id, Person newPerson)
 	{
-		String SQL_UpdatePerson = "UPDATE person SET name = ?, email = ? WHERE id = ?";
 		try {
 			PreparedStatement preparedStatement = conn.prepareStatement(SQL_UpdatePerson);
 			preparedStatement.setString(1, newPerson.getName());
@@ -101,6 +103,16 @@ public class PeopleDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+	}
+	
+	public void murderPerson(Integer id)
+	{
+		try {
+		PreparedStatement preparedStatement = conn.prepareStatement(SQL_DeletePerson);
+		preparedStatement.setInt(1, id);
+		preparedStatement.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

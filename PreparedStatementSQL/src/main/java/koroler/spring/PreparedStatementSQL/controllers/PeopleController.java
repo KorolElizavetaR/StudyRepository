@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -69,13 +70,16 @@ public class PeopleController {
 		{
 			return "people/edit";
 		}
-		System.out.println(person + "id : " + id);
-		peopleDAO.updatePerson(person.getId(), person);
+		//System.out.println(person + "id : " + id);
+		peopleDAO.updatePerson(id, person);
 		return "redirect:/people/{id}"; // "redirect:/people";
 	}
 	
-	public void upd(Person person, Integer id)
+	//Delete person
+	@DeleteMapping ("/{id}")
+	public String submitDeletePerson(@PathVariable("id") Integer id)
 	{
-		peopleDAO.updatePerson(id, person);
+		peopleDAO.murderPerson(id);
+		return "redirect:/people";
 	}
 }
