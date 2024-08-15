@@ -69,8 +69,8 @@ public class PeopleController {
 		{
 			return "people/edit";
 		}
-		//System.out.println(person + "id : " + id);
-		peopleDAO.updatePerson(id, person);
+		System.out.println(person + "id : " + id);
+		peopleDAO.updatePerson(person.getId(), person);
 		return "redirect:/people/{id}"; // "redirect:/people";
 	}
 	

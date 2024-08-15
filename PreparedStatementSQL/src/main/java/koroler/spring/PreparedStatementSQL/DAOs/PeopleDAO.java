@@ -18,7 +18,7 @@ import koroler.spring.PreparedStatementSQL.models.Person;
 public class PeopleDAO {
 	final private String SQL_SelectAll = "Select * from person";
 	final private String SQL_GetPerson = SQL_SelectAll + " WHERE id = ?";
-	final private String SQL_UpdatePerson = "UPDATE person SET name = ?, email = ? WHERE id = ?";
+	//final private String SQL_UpdatePerson = "UPDATE person SET name = ?, email = ? WHERE id = ?";
 	static Connection conn;
 	Integer newtindex;
 
@@ -91,11 +91,13 @@ public class PeopleDAO {
 	
 	public void updatePerson(Integer id, Person newPerson)
 	{
+		String SQL_UpdatePerson = "UPDATE person SET name = ?, email = ? WHERE id = ?";
 		try {
 			PreparedStatement preparedStatement = conn.prepareStatement(SQL_UpdatePerson);
 			preparedStatement.setString(1, newPerson.getName());
 			preparedStatement.setString(2, newPerson.getEmail());
 			preparedStatement.setInt(3, id);
+			preparedStatement.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
