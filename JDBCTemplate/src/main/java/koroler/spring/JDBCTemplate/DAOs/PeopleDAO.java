@@ -1,118 +1,63 @@
 package koroler.spring.JDBCTemplate.DAOs;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import koroler.spring.JDBCTemplate.models.Person;
 
 @Component
 public class PeopleDAO {
-	final private String SQL_SelectAll = "Select * from person ORDER BY id";//ORDER BY id
+	final private JdbcTemplate temp;
+	final private String SQL_SelectAll = "Select * from person ORDER BY id";
 	final private String SQL_Insert = "INSERT INTO person VALUES(?, ?, ?);";
 	final private String SQL_GetPerson = "Select * from person WHERE id = ?";
 	final private String SQL_UpdatePerson = "UPDATE person SET name = ?, email = ? WHERE id = ?";
 	final private String SQL_DeletePerson = "DELETE FROM person WHERE id = ?";
-	
-	static Connection conn;
-	Integer newtindex;
 
-	public PeopleDAO(@Value ("${spring.datasource.driver-class-name}") String drivers,
-					@Value ("${spring.datasource.username}") String username,
-					@Value ("${spring.datasource.password}") String password,
-					@Value ("${spring.datasource.url}") String URL)
+	private Integer newtindex;
+
+	@Autowired
+	public PeopleDAO(JdbcTemplate temp)
 	{
-		try
-		{
-		Class.forName(drivers);
-		conn = DriverManager.getConnection(URL, username, password);
-		}
-		catch (Exception ex)
-		{
-			ex.printStackTrace();
-		}
-		
+		this.temp = temp;
 	}
 	
+	// Show full list
 	public List <Person> getList()
 	{
-		newtindex = 1;
-		List <Person> people = new ArrayList<Person>();
-		try {
-			Statement statement = conn.createStatement();
-			ResultSet res = statement.executeQuery(SQL_SelectAll);
-			while (res.next())
-			{
-				people.add(new Person(res.getInt("id"), res.getString("name"), res.getString("email")));
-				newtindex++;
-			}
-			res.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return people;
+		List <Person> list = temp.query(SQL_SelectAll, new BeanPropertyRowMapper<>(Person.class));
+		newtindex = list.size();
+		//return temp.query(SQL_SelectAll, new PersonMapper());
+		return list;
 	}
 	
+	// Add person
 	public void addPerson(Person person)
 	{
-		try
-		{
-			PreparedStatement preparedStatement = conn.prepareStatement(SQL_Insert);
-			preparedStatement.setInt(1, newtindex);
-			preparedStatement.setString(2, person.getName());
-			preparedStatement.setString(3, person.getEmail());
-			preparedStatement.executeUpdate();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
+		temp.update(SQL_Insert, ++newtindex, person.getName(), person.getEmail());
 	}
 	
+	// Return person from list
+	@SuppressWarnings("deprecation")
 	public Person getPerson(Integer ID)
 	{
-		ResultSet res;
-		Person person = null;
-		try {
-			PreparedStatement preparedStatement = conn.prepareStatement(SQL_GetPerson);
-			preparedStatement.setInt(1, ID);
-			res = preparedStatement.executeQuery();
-			res.next();
-			person = new Person(res.getInt("id"), res.getString("name"), res.getString("email"));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return person;
+		//return temp.query(SQL_GetPerson, new Object[]{ID}, new PersonMapper()).stream().findAny().orElse(null);
+		return temp.query(SQL_GetPerson, new Object[]{ID}, new BeanPropertyRowMapper<>(Person.class)).stream().findAny().orElse(null);
 	}
 	
+	//Edit info
 	public void updatePerson(Integer id, Person newPerson)
 	{
-		try {
-			PreparedStatement preparedStatement = conn.prepareStatement(SQL_UpdatePerson);
-			preparedStatement.setString(1, newPerson.getName());
-			preparedStatement.setString(2, newPerson.getEmail());
-			preparedStatement.setInt(3, id);
-			preparedStatement.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		temp.update(SQL_UpdatePerson, newPerson.getName(), newPerson.getEmail(), id);
 	}
 	
+	//Delete person
 	public void murderPerson(Integer id)
 	{
-		try {
-		PreparedStatement preparedStatement = conn.prepareStatement(SQL_DeletePerson);
-		preparedStatement.setInt(1, id);
-		preparedStatement.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		temp.update(SQL_DeletePerson, id);
 	}
 }
