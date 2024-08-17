@@ -1,6 +1,8 @@
 package koroler.spring.JDBCTemplate.config;
 
 
+import java.util.Objects;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
@@ -23,19 +26,21 @@ import org.thymeleaf.spring6.view.ThymeleafViewResolver;
 
 @Configuration
 @ComponentScan ("koroler.spring.PreparedStatementSQL")
-@PropertySource ("classpath:application.properties")
+@PropertySource ("classpath:database.properties")
 @EnableWebMvc
 public class ConfigClass implements WebMvcConfigurer {
-	@Value ("${spring.datasource.driver-class-name}") private String drivers;
-	@Value ("${spring.datasource.username}") private String username;
-	@Value ("${spring.datasource.password}") private String password;
-	@Value ("${spring.datasource.url}") private String URL;
+//	@Value ("${spring.datasource.driver-class-name}") private String drivers;
+//	@Value ("${spring.datasource.username}") private String username;
+//	@Value ("${spring.datasource.password}") private String password;
+//	@Value ("${spring.datasource.url}") private String URL;
 	private final ApplicationContext context;
+	private final Environment environment;
 	
 	@Autowired
-	public ConfigClass (ApplicationContext context)
+	public ConfigClass (ApplicationContext context, Environment environment)
 	{
 		this.context = context;
+		this.environment = environment;
 	}
 	
 	@Bean
@@ -76,10 +81,10 @@ public class ConfigClass implements WebMvcConfigurer {
 	public DataSource dataSource()
 	{
 		DriverManagerDataSource datasrc = new DriverManagerDataSource();
-		datasrc.setDriverClassName(drivers);
-		datasrc.setUrl(URL);
-		datasrc.setUsername(username);
-		datasrc.setPassword(password);
+		datasrc.setDriverClassName(Objects.requireNonNull(environment.getProperty("spring.datasource.driver-class-name")));
+		datasrc.setUrl(Objects.requireNonNull(environment.getProperty("spring.datasource.url")));
+		datasrc.setUsername(Objects.requireNonNull(environment.getProperty("spring.datasource.username")));
+		datasrc.setPassword(Objects.requireNonNull(environment.getProperty("spring.datasource.password")));
 		return datasrc;
 	}
 	

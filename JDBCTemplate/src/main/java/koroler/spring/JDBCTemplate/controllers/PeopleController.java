@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jakarta.validation.Valid;
 import koroler.spring.JDBCTemplate.DAOs.PeopleDAO;
 import koroler.spring.JDBCTemplate.models.Person;
 
@@ -45,9 +46,10 @@ public class PeopleController {
 	}
 	
 	@PostMapping ()
-	public String submitAddPerson(@ModelAttribute ("person") Person person, BindingResult bindingResult)
+	public String submitAddPerson(@Valid Person person, BindingResult bindingResult)
 	{
-		if(bindingResult.hasErrors())
+		//@ModelAttribute ("person")
+		if (bindingResult.hasErrors())
 		{
 			return "people/add";
 		}

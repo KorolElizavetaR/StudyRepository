@@ -13,12 +13,10 @@ import koroler.spring.JDBCTemplate.models.Person;
 public class PeopleDAO {
 	final private JdbcTemplate temp;
 	final private String SQL_SelectAll = "Select * from person ORDER BY id";
-	final private String SQL_Insert = "INSERT INTO person VALUES(?, ?, ?);";
+	final private String SQL_Insert = "INSERT INTO person (name, email) VALUES(?, ?);";
 	final private String SQL_GetPerson = "Select * from person WHERE id = ?";
 	final private String SQL_UpdatePerson = "UPDATE person SET name = ?, email = ? WHERE id = ?";
 	final private String SQL_DeletePerson = "DELETE FROM person WHERE id = ?";
-
-	private Integer newtindex;
 
 	@Autowired
 	public PeopleDAO(JdbcTemplate temp)
@@ -29,23 +27,19 @@ public class PeopleDAO {
 	// Show full list
 	public List <Person> getList()
 	{
-		List <Person> list = temp.query(SQL_SelectAll, new BeanPropertyRowMapper<>(Person.class));
-		newtindex = list.size();
-		//return temp.query(SQL_SelectAll, new PersonMapper());
-		return list;
+		return temp.query(SQL_SelectAll, new BeanPropertyRowMapper<>(Person.class));
 	}
 	
 	// Add person
 	public void addPerson(Person person)
 	{
-		temp.update(SQL_Insert, ++newtindex, person.getName(), person.getEmail());
+		temp.update(SQL_Insert, person.getName(), person.getEmail());
 	}
 	
 	// Return person from list
 	@SuppressWarnings("deprecation")
 	public Person getPerson(Integer ID)
 	{
-		//return temp.query(SQL_GetPerson, new Object[]{ID}, new PersonMapper()).stream().findAny().orElse(null);
 		return temp.query(SQL_GetPerson, new Object[]{ID}, new BeanPropertyRowMapper<>(Person.class)).stream().findAny().orElse(null);
 	}
 	
