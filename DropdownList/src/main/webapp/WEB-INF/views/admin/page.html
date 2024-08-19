@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ADMIN</title>
+</head>
+<body>
+	<form th:method = "PATCH" th:action = "@{/add}">
+		<label for="person">Кто??</label>
+			<select id = "person" th:object="${person}" th:field = "*{id}">
+				<option th:each="person : ${people}" th:value = "${person.getId()}" th:text="${person.getName()}">
+				</option>	
+			</select>
+			<input type ="submit" value="Ну вот его например"/>
+	</form>
+</body>
+</html>

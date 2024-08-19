@@ -1,4 +1,4 @@
-package koroler.spring.SpringValidator.controllers;
+package koroler.spring.DropdownList.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import jakarta.validation.Valid;
-import koroler.spring.SpringValidator.DAOs.PeopleDAO;
-import koroler.spring.SpringValidator.models.Person;
-import koroler.spring.SpringValidator.util.PersonValidator;
+import koroler.spring.DropdownList.DAOs.PeopleDAO;
+import koroler.spring.DropdownList.models.Person;
+import koroler.spring.DropdownList.util.PersonValidator;
 
 @Controller
 @RequestMapping ("/people")

@@ -1,12 +1,13 @@
-package koroler.spring.SpringValidator.util;
+package koroler.spring.DropdownList.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import koroler.spring.SpringValidator.DAOs.PeopleDAO;
-import koroler.spring.SpringValidator.models.Person;
+import koroler.spring.DropdownList.DAOs.PeopleDAO;
+import koroler.spring.DropdownList.models.Person;
+
 
 @Component
 public class PersonValidator implements Validator {

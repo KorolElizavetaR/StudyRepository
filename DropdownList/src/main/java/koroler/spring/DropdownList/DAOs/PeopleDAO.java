@@ -1,4 +1,4 @@
-package koroler.spring.SpringValidator.DAOs;
+package koroler.spring.DropdownList.DAOs;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,7 +8,9 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import koroler.spring.SpringValidator.models.Person;
+import koroler.spring.DropdownList.models.Person;
+
+
 
 @Component
 public class PeopleDAO {

@@ -1,4 +1,4 @@
-package koroler.spring.SpringValidator.models;
+package koroler.spring.DropdownList.models;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
