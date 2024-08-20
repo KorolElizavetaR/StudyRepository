@@ -25,4 +25,10 @@ public class PeopleDAO {
 	{
 		return temp.query("SELECT * FROM " + database_name, new BeanPropertyRowMapper<>(Person.class));
 	}
+	
+	@SuppressWarnings("deprecation")
+	public Person getPerson(Integer id)
+	{
+		return temp.query("SELECT * FROM person WHERE person_id = ?", new Object[]{id}, new BeanPropertyRowMapper<>(Person.class)).stream().findAny().orElse(null);
+	}
 }
