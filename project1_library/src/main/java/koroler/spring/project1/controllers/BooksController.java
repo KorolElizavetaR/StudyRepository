@@ -40,9 +40,18 @@ public class BooksController {
 	}
 	
 	@PatchMapping ("/{id}/add")
-	public String addBookOwner(Person person)
+	public String addBookOwner(Person person, @PathVariable("id") Integer id)
 	{
-		System.out.println(person.getPerson_id());
+		booksDAO.addOwner(person.getPerson_id(), id);
+		//System.out.println(person.getPerson_id());
+		return "redirect:/books/{id}";
+	}
+	
+	@PatchMapping ("/{id}/remove")
+	public String removeBookOwner(@PathVariable("id") Integer id)
+	{
+		booksDAO.addOwner(null, id);
+		//System.out.println(person.getPerson_id());
 		return "redirect:/books/{id}";
 	}
 	

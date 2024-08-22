@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import jakarta.annotation.Nullable;
 import koroler.spring.project1.models.Book;
 import koroler.spring.project1.models.Person;
 
@@ -39,8 +40,8 @@ public class BooksDAO {
 		return temp.query("SELECT * FROM " + database_name + " WHERE book_id = ?", new Object[]{id}, new BeanPropertyRowMapper<>(Book.class)).stream().findAny().orElse(null);
 	}
 	
-	public void addOwner(Integer id)
+	public void addOwner(@Nullable Integer person_id, Integer book_id)
 	{
-		return temp.update("");
+		temp.update("UPDATE "+ database_name +" SET book_owner = ? WHERE book_id = ?", person_id, book_id);
 	}
 }

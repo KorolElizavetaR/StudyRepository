@@ -18,7 +18,11 @@
 			</select>
 			<input type ="submit" value="Назначить читателя"/>
 		</form>
+		
 	<div th:unless = "${owner == null}" th:text = "${owner.getFull_name()}"></div>
+	<form th:unless = "${owner == null}" th:method = "PATCH" th:action = "@{/books/{id}/remove(id=${book.getBook_id()})}">
+			<input type ="submit" value="Убрать читателя"/>
+	</form>
 	<hr/>
 	<form action = "/books">
 		<input type="submit" value="Вернуться к книгам"/>
