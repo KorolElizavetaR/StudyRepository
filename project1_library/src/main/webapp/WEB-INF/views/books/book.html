@@ -9,6 +9,7 @@
 	<hr/>
 	Читатель:
 	<div th:if = "${person == null}" th:text = "|У книги нет читателей|"></div>
+	<div th:unless = "${person == null}" th:text = "${person.getFull_name()}"></div>
 	<hr/>
 	<form action = "/books">
 		<input type="submit" value="Вернуться к книгам"/>
