@@ -44,4 +44,15 @@ public class BooksDAO {
 	{
 		temp.update("UPDATE "+ database_name +" SET book_owner = ? WHERE book_id = ?", person_id, book_id);
 	}
+	
+	public void addBook(Book book)
+	{
+		temp.update("INSERT INTO "+ database_name +" (book_name, book_author) VALUES (?, ?)", book.getBook_name(), book.getBook_author());
+	}
+	
+	public void updateBook(Book book, Integer id)
+	{
+		temp.update("UPDATE "+ database_name +" SET book_name = ?, book_author = ? WHERE book_id = ?", book.getBook_name(), book.getBook_author(), id);
+	}
+	
 }

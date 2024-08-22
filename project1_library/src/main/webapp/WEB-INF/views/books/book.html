@@ -27,5 +27,8 @@
 	<form action = "/books">
 		<input type="submit" value="Вернуться к книгам"/>
 	</form>
+	<form th:action = "@{/books/{id}/edit(id=${book.getBook_id()})}">
+		<input type="submit" value="Редактировать книгу"/>
+	</form>
 </body>
 </html>

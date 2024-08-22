@@ -1,5 +1,6 @@
 package koroler.spring.project1.models;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,17 +12,16 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class Book {
-	@NotNull
 	@Getter
 	@Setter
 	private Integer book_id;
 	@Setter
 	private Integer book_owner;
-	@NotNull
+	@NotBlank (message = "Название книги не может быть пустым")
 	@Getter
 	@Setter
 	private String book_name;
-	@NotNull
+	@NotBlank (message = "Автор книги не может быть пустым")
 	@Getter
 	@Setter
 	private String book_author;
