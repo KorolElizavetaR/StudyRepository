@@ -17,5 +17,8 @@
 	<form action = "/people">
 		<input type="submit" value="Вернуться на главную страницу"/>
 	</form>
+	<form th:method="DELETE" th:action="@{/people/{id}(id=${person.getPerson_id()})}">
+    	<input type="submit" value="Удалить читателя"/>
+    </form> 
 </body>
 </html>

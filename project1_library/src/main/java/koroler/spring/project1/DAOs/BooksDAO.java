@@ -33,4 +33,9 @@ public class BooksDAO {
 		return temp.query("SELECT * FROM " + database_name, new BeanPropertyRowMapper<>(Book.class));
 	}
 
+	@SuppressWarnings("deprecation")
+	public Book getBook(Integer id)
+	{
+		return temp.query("SELECT * FROM " + database_name + " WHERE book_id = ?", new Object[]{id}, new BeanPropertyRowMapper<>(Book.class)).stream().findAny().orElse(null);
+	}
 }

@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import jakarta.annotation.Nullable;
 import koroler.spring.project1.models.Person;
 
 @Component
@@ -27,8 +28,20 @@ public class PeopleDAO {
 	}
 	
 	@SuppressWarnings("deprecation")
-	public Person getPerson(Integer id)
+	public Person getPerson(@Nullable Integer id)
 	{
+		if (id == null) id = -1;
 		return temp.query("SELECT * FROM person WHERE person_id = ?", new Object[]{id}, new BeanPropertyRowMapper<>(Person.class)).stream().findAny().orElse(null);
 	}
+	
+	public void addPerson(Person person)
+	{
+		temp.update("INSERT INTO " + database_name + "(full_name, birth_year) VALUES (?, ?)", person.getFull_name(), person.getBirth_year_asDate());
+	}
+	
+	public void deletePerson(Integer id)
+	{
+		temp.update("DELETE FROM " + database_name +" WHERE person_id = ?", id);
+	}
+			
 }

@@ -43,6 +43,7 @@ public class ConfigClass implements WebMvcConfigurer{
 		template.setApplicationContext(context);
 		template.setPrefix("/WEB-INF/views/"); // "/WEB-INF/classes/templates/" just in case
 		template.setSuffix(".html");
+		template.setCharacterEncoding("UTF-8");
 		return template;
 	}
 	
@@ -67,6 +68,7 @@ public class ConfigClass implements WebMvcConfigurer{
 	{
 		ThymeleafViewResolver resolver = new ThymeleafViewResolver();
 		resolver.setTemplateEngine(templateEngine());
+		 resolver.setCharacterEncoding("UTF-8");
 		reg.viewResolver(resolver);
 	}
 
