@@ -20,5 +20,8 @@
 	<form th:method="DELETE" th:action="@{/people/{id}(id=${person.getPerson_id()})}">
     	<input type="submit" value="Удалить читателя"/>
     </form> 
+    <form th:action = "@{/people/{id}/edit(id=${person.getPerson_id()})}">
+		<input type="submit" value="Редактировать читателя"/>
+	</form>
 </body>
 </html>

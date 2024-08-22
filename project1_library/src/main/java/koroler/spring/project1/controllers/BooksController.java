@@ -25,6 +25,7 @@ public class BooksController {
 	@Autowired
 	BooksDAO booksDAO;
 	
+	// Получить список всех книг
 	@GetMapping ()
 	public String GetBooks(Model model)
 	{
@@ -32,6 +33,7 @@ public class BooksController {
 		return "books/list";
 	}
 	
+	// Получить книгу по айди
 	@GetMapping ("/{id}")
 	public String getBook(Model model, @PathVariable ("id") Integer id, @ModelAttribute ("person") Person person)
 	{
@@ -42,29 +44,30 @@ public class BooksController {
 		return "books/book";
 	}
 	
+	// из /books/{id} - добавить читателя книге
 	@PatchMapping ("/{id}/add")
 	public String addBookOwner(Person person, @PathVariable("id") Integer id)
 	{
 		booksDAO.addOwner(person.getPerson_id(), id);
-		//System.out.println(person.getPerson_id());
 		return "redirect:/books/{id}";
 	}
 	
+	// из /books/{id} - удалить читателя книги
 	@PatchMapping ("/{id}/remove")
 	public String removeBookOwner(@PathVariable("id") Integer id)
 	{
 		booksDAO.addOwner(null, id);
-		//System.out.println(person.getPerson_id());
 		return "redirect:/books/{id}";
 	}
 	
+	// добавить книгу - из /books
 	@GetMapping ("/add")
 	public String addBook(@ModelAttribute Book book)
 	{
 		return "books/addbook";
 	}
 	
-	@PostMapping () 
+	@PostMapping ("/add") 
 	public String submitAddBook(@Valid @ModelAttribute("book") Book book, BindingResult bindingResult)
 	{
 		if (bindingResult.hasErrors())
@@ -75,6 +78,7 @@ public class BooksController {
 		return "redirect:/books";
 	}
 	
+	// Редачить книгу
 	@GetMapping ("/{id}/edit")
 	public String editBook(Model model, @PathVariable ("id") Integer id)
 	{
@@ -93,8 +97,4 @@ public class BooksController {
 		booksDAO.updateBook(book, id);
 		return "redirect:/books/{book_ID}";
 	}
-	// books
-	// books/new
-	// books/{id}
-	// books/{id}/edit
 }

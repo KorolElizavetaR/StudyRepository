@@ -3,6 +3,7 @@ package koroler.spring.project1.models;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
@@ -20,17 +21,16 @@ public class Person {
 	@Getter
 	@Setter
 	Integer person_id;
-	// @Pattern (regexp = "[А-Я]\\w+ [А-Я]\\w+ [А-Я]\\w+", message = "Некорректный ввод ФИО")
-	// В конце работы над проектом глянуть на regexp
+	@Pattern (regexp = "[А-ЯЁ][-А-яЁё]+ [А-ЯЁ][-А-яЁё]+ [А-ЯЁ][-А-яЁё]+", message = "Некорректный ввод ФИО")
 	@Setter
 	@Getter
-	@NotEmpty (message = "Name can't be empty")
+	@NotEmpty (message = "Имя не может быть пустым")
 	//(message = "Имя не может быть пустым")
 	String full_name;
-	@Past (message = "You can't be born tomorrow or any other future time")
+	@Past (message = "Время не может быть в будущем")
 	//(message = "Дата рождения не может быть пустой")
-	@NotNull (message = "Birth date can't be empty")
-	java.util.Date birth_year; // написать проверку не раньше 1920.01.01 в util
+	@NotNull (message = "Дата рождения не может быть пустой")
+	java.util.Date birth_year;
 	
 	public String getBirth_year()
 	{

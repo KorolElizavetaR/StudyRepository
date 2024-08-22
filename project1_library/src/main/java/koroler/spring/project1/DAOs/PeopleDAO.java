@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import jakarta.annotation.Nullable;
+import koroler.spring.project1.models.Book;
 import koroler.spring.project1.models.Person;
 
 @Component
@@ -42,6 +43,11 @@ public class PeopleDAO {
 	public void deletePerson(Integer id)
 	{
 		temp.update("DELETE FROM " + database_name +" WHERE person_id = ?", id);
+	}
+	
+	public void updatePerson(Person person, Integer id)
+	{
+		temp.update("UPDATE "+ database_name +" SET full_name = ?, birth_year = ? WHERE person_id = ?", person.getFull_name(), person.getBirth_year_asDate(), id);
 	}
 			
 }
