@@ -10,7 +10,7 @@
 	Читатель:
 	<div th:if = "${owner == null}" th:text = "|У книги нет читателей|">
 	</div>
-	<form th:if = "${owner == null}" th:method = "PATCH" th:action = "@{/books/{id}(id=${book.getBook_id()})}">
+	<form th:if = "${owner == null}" th:method = "PATCH" th:action = "@{/books/{id}/add(id=${book.getBook_id()})}">
 		<label for="person">Выберите читателя:</label>
 			<select id = "person" th:object="${person}" th:field = "*{person_id}">
 				<option th:each="person : ${people}" th:value = "${person.getPerson_id()}" th:text="${person.getFull_name()}">

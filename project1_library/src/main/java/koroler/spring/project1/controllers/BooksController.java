@@ -39,7 +39,7 @@ public class BooksController {
 		return "books/book";
 	}
 	
-	@PatchMapping ("/{id}")
+	@PatchMapping ("/{id}/add")
 	public String addBookOwner(Person person)
 	{
 		System.out.println(person.getPerson_id());
