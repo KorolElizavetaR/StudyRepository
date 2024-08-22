@@ -8,8 +8,17 @@
 	<h1 th:text = "|'${book.getBook_name()}' by ${book.getBook_author()}|"></h1>
 	<hr/>
 	Читатель:
-	<div th:if = "${person == null}" th:text = "|У книги нет читателей|"></div>
-	<div th:unless = "${person == null}" th:text = "${person.getFull_name()}"></div>
+	<div th:if = "${owner == null}" th:text = "|У книги нет читателей|">
+	</div>
+	<form th:if = "${owner == null}" th:method = "PATCH" th:action = "@{/books/{id}(id=${book.getBook_id()})}">
+		<label for="person">Выберите читателя:</label>
+			<select id = "person" th:object="${person}" th:field = "*{person_id}">
+				<option th:each="person : ${people}" th:value = "${person.getPerson_id()}" th:text="${person.getFull_name()}">
+				</option>
+			</select>
+			<input type ="submit" value="Назначить читателя"/>
+		</form>
+	<div th:unless = "${owner == null}" th:text = "${owner.getFull_name()}"></div>
 	<hr/>
 	<form action = "/books">
 		<input type="submit" value="Вернуться к книгам"/>
