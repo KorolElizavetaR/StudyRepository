@@ -2,6 +2,8 @@ package korol.hibernateagain.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -13,13 +15,13 @@ import lombok.ToString;
 @Entity
 @Table (name = "person")
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 @ToString
-public class person {
+public class Person {
 	@Id
 	@Column (name = "person_id")
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int person_id;
 	
 	@Column (name = "person_name")
@@ -27,4 +29,10 @@ public class person {
 	
 	@Column (name = "age")
 	private int age;
+	
+	public Person(String person_name, int age)
+	{
+		this.person_name = person_name;
+		this.age = age;
+	}
 }

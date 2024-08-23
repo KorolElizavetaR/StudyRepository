@@ -9,7 +9,6 @@ CREATE TABLE person
 
 SELECT * FROM person;
 
-INSERT INTO person("name", age) VALUES ('Константин', 25);
-INSERT INTO person("name", age) 
-	VALUES ('Валерия', 19),
-			('Василий', 56);
+INSERT INTO person(person_name, age) 
+	VALUES ('Валерия', 15),
+			('Женя', 13);
