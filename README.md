@@ -29,3 +29,4 @@
 + [Hibernate : configured by XML](https://github.com/KorolElizavetaR/SpringCourse/tree/master/Hibernate)
 + [Hibernate...Whatever that is, there's repository. And XML hibernate config](https://github.com/KorolElizavetaR/SpringCourse/tree/master/HibernateBootstraped)
 + [Hibernate configured by properties and Java-code(Almost-empty maven project), basic CRUD operations](https://github.com/KorolElizavetaR/SpringCourse/tree/master/hibernateagain)
++ [Hibernate OneToMany] (https://github.com/KorolElizavetaR/SpringCourse/tree/master/onetomany) *Каскадирование в Hibernate не настроено*
