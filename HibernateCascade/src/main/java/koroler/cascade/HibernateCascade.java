@@ -9,7 +9,7 @@ import org.hibernate.cfg.Configuration;
 
 import koroler.cascade.models.*;
 
-public class OneToManyApplication {
+public class HibernateCascade {
 
 	public static void main(String[] args) {
 		Configuration config = new Configuration().addAnnotatedClass(Person.class).addAnnotatedClass(Product.class);
@@ -17,7 +17,7 @@ public class OneToManyApplication {
 		Session session = sessionFactory.getCurrentSession();
 		try
 		{
-			
+			CreatePersonAndProduct(session);
 		}
 		finally {
 			session.close();	
@@ -51,11 +51,12 @@ public class OneToManyApplication {
 	public static void CreatePersonAndProduct(Session session)
 	{
 		Transaction transaction = session.beginTransaction();
-		Person person = new Person("Еремец Василия Александровна", 18);
-		Product product = new Product("Нож", person);
-		person.addProduct(product); // не создает sql запрос
+		Person person = new Person("Савина Евгения Олеговна", 21);
+		
+		person.addProduct(new Product("Серьги")); // не создает sql запрос
+		person.addProduct(new Product("Кольцо"));
+		
 		session.persist(person);
-		session.persist(product);
 		transaction.commit();
 	}
 	

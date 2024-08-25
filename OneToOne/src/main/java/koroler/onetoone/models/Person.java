@@ -1,11 +1,8 @@
-package koroler.cascade.models;
+package koroler.onetoone.models;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.annotations.Cascade;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -40,9 +37,7 @@ public class Person {
 	@Setter
 	private Integer age;
 	
-	//@OneToMany(mappedBy = "customer")
-	// @Cascade (org.hibernate.annotations.CascadeType.SAVE_UPDATE) - с использованием метода save
-	@OneToMany(mappedBy = "customer", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "customer")
 	@Getter
 	private List <Product> products;
 	
@@ -55,7 +50,6 @@ public class Person {
 	
 	public void addProduct(Product product)
 	{
-		products.add(product); 
-		product.setCustomer(this); // обновление кэша
+		products.add(product);
 	}
 }
