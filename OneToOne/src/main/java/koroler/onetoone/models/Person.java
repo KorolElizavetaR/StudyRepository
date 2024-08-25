@@ -1,15 +1,15 @@
 package koroler.onetoone.models;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,7 +21,7 @@ import lombok.ToString;
 @ToString
 public class Person {
 	@Id
-	@Column (name = "personid")
+	@Column (name = "person_id")
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	@Getter
 	@Setter
@@ -32,24 +32,19 @@ public class Person {
 	@Setter
 	private String full_name;
 	
-	@Column (name = "age")
-	@Getter
-	@Setter
-	private Integer age;
+	@OneToOne(mappedBy = "person_id",  cascade = CascadeType.PERSIST)
+	@Getter	
+	private Passport passport;
 	
-	@OneToMany(mappedBy = "customer")
-	@Getter
-	private List <Product> products;
-	
-	public Person(String full_name, Integer age)
+	public Person(String full_name)
 	{
-		products = new ArrayList<>();
 		this.full_name = full_name;
-		this.age = age;
 	}
 	
-	public void addProduct(Product product)
+	public void setPassport(Passport passport)
 	{
-		products.add(product);
+		this.passport = passport;
+		passport.setPerson_id(this);
 	}
+	
 }
