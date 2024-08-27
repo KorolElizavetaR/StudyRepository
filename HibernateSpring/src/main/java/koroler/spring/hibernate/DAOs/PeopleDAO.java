@@ -34,25 +34,36 @@ public class PeopleDAO {
 	}
 	
 	// Add person
+	@Transactional
 	public void addPerson(Person person)
 	{
-		
+		Session session = sessionFactory.getCurrentSession();
+		session.persist(person);
 	}
 	
+	@Transactional (readOnly = true)
 	public Person getPerson(Integer ID)
 	{
-		return null;
+		Session session = sessionFactory.getCurrentSession();
+		return session.get(Person.class, ID);
 	}
 	
 	//Edit info
+	@Transactional
 	public void updatePerson(Integer id, Person newPerson)
 	{
-		
+		Session session = sessionFactory.getCurrentSession();
+		Person person = session.get(Person.class, id);
+		person.setEmail(newPerson.getEmail());
+		person.setName(newPerson.getName());
 	}
 	
 	//Delete person
+	@Transactional
 	public void murderPerson(Integer id)
 	{
-		
+		Session session = sessionFactory.getCurrentSession();
+		Person person = session.get(Person.class, id); 
+		session.remove(person);
 	}
 }

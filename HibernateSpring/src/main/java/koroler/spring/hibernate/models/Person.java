@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -29,12 +30,12 @@ public class Person {
 	private int id;
 	
 	@NotNull
+	@NotBlank (message = "Name can't be empty")
 	@Size(min=2, max=40)
 	@Column (name = "name")
 	private String name;
 	
-	@Email
-	@Size(min=9, max=70)
+	@Email (message = "Input valid email!")
 	@Column (name = "email")
 	private String email; 
 	
