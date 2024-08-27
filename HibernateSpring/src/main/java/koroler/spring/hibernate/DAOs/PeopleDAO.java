@@ -26,11 +26,11 @@ public class PeopleDAO {
 	
 	// Get full list
 	@SuppressWarnings({ "unchecked", "deprecation" })
-	@Transactional 
+	@Transactional (readOnly = true)
 	public List <Person> getList()
 	{
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from person").getResultList();
+		return session.createQuery("from Person").getResultList();
 	}
 	
 	// Add person
