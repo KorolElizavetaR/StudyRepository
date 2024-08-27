@@ -1,3 +1,5 @@
+## Java Advanced
++ [Тестирование: Junit](https://github.com/KorolElizavetaR/SpringCourse/tree/master/junit)
 ## Spring Framework
 ### Spring Core
 + [Inversion of Control : XML](https://github.com/KorolElizavetaR/SpringCourse/tree/master/SpringIoC)
@@ -30,3 +32,8 @@
 + [Hibernate...Whatever that is, there's repository. And XML hibernate config](https://github.com/KorolElizavetaR/SpringCourse/tree/master/HibernateBootstraped)
 + [Hibernate configured by properties and Java-code(Almost-empty maven project), basic CRUD operations](https://github.com/KorolElizavetaR/SpringCourse/tree/master/hibernateagain)
 + [Hibernate OneToMany](https://github.com/KorolElizavetaR/SpringCourse/tree/master/onetomany) *Каскадирование в Hibernate не настроено*
++ [Hibernate OneToOne](https://github.com/KorolElizavetaR/SpringCourse/tree/master/OneToOne)
++ [Hibernate ManyToMany](https://github.com/KorolElizavetaR/SpringCourse/tree/master/ManyToMany)
++ [Hibernate каскадирование](https://github.com/KorolElizavetaR/SpringCourse/tree/master/HibernateCascade)
++ [Hibernate ленивая и неленивая загрузки](https://github.com/KorolElizavetaR/SpringCourse/tree/master/LazyAndEagerLoading)
++ [Hibernate CRUD + Spring MVC](https://github.com/KorolElizavetaR/SpringCourse/tree/master/HibernateSpring)
