@@ -35,10 +35,65 @@ public class PeopleController {
 	public String getList(Model model)
 	{
 		model.addAttribute("people", peopleService.getList());
-		List <Product> products = productsService.getList();
-		for (Product product: products)
-			System.out.println(product);
-		System.out.println("\n\n" + productsService.findByOwner(peopleService.findPerson(10002)));
+//		List <Product> products = productsService.getList();
+//		for (Product product: products)
+//			System.out.println(product);
+//		System.out.println("\n\n" + productsService.findByOwner(peopleService.findPerson(10002)));
 		return "people/list";
 	}
+	
+	// Person page
+		@GetMapping("/{id}")
+		public String getPerson(Model model, @PathVariable ("id") Integer id)
+		{
+			model.addAttribute("person", peopleService.findPerson(id));
+			return "people/person";
+		}
+		
+		//Add person
+		@GetMapping ("/add")
+		public String addPerson(@ModelAttribute ("person") Person person)
+		{
+			return "people/add";
+		}
+		
+		@PostMapping ()
+		public String submitAddPerson(@Valid Person person, BindingResult bindingResult)
+		{
+			//@ModelAttribute ("person")
+			if (bindingResult.hasErrors())
+			{
+				return "people/add";
+			}
+			peopleService.savePerson(person);
+			return "redirect:/people";
+		}
+		
+		//Update person
+		@GetMapping ("/{id}/edit")
+		public String UpdatePerson(Model model, @PathVariable ("id") Integer id)
+		{
+			model.addAttribute("person", peopleService.findPerson(id));
+			return "people/edit";
+		}
+		
+		@PatchMapping ("/{id}")
+		public String submitUpdatePerson(@ModelAttribute("person") Person person, BindingResult bindingResult, @PathVariable("id") Integer id)
+		{
+			if (bindingResult.hasErrors())
+			{
+				return "people/edit";
+			}
+			//System.out.println(person + "id : " + id);
+			peopleService.updatePerson(id, person);
+			return "redirect:/people/{id}"; // "redirect:/people";
+		}
+		
+		//Delete person
+		@DeleteMapping ("/{id}")
+		public String submitDeletePerson(@PathVariable("id") Integer id)
+		{
+			peopleService.deletePerson(id);
+			return "redirect:/people";
+		}
 }
