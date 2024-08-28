@@ -37,3 +37,6 @@
 + [Hibernate каскадирование](https://github.com/KorolElizavetaR/SpringCourse/tree/master/HibernateCascade)
 + [Hibernate ленивая и неленивая загрузки](https://github.com/KorolElizavetaR/SpringCourse/tree/master/LazyAndEagerLoading)
 + [Hibernate CRUD + Spring MVC](https://github.com/KorolElizavetaR/SpringCourse/tree/master/HibernateSpring)
++ [Spring JPA. Первое приложение](https://github.com/KorolElizavetaR/StudyRepository/tree/master/SpringJPA)
++ [Spring JPA. Работа с OneToMany. Кастомные запросы. Решение проблем с датами.](https://github.com/KorolElizavetaR/StudyRepository/tree/master/SpringJPACustomQueries)
+**После этого в курсе есть еще несколько тем: решение N+1, ENUMs, Load vs Get, Pagination And Sorting, Transient. Эти темы не хотелось бы выносить в проекты. Если необходимо воспользоваться данной информацией, искать в Notion**
