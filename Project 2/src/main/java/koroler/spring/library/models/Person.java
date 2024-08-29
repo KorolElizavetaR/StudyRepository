@@ -1,9 +1,11 @@
-package koroler.spring.SpringMVCApp.models;
+package koroler.spring.library.models;
 
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import java.text.SimpleDateFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,48 +16,47 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
 @ToString
-@Entity
 @Table (name = "person")
+@Entity
 public class Person {
-	@NotNull
-	@Column (name = "personid")
+	@Column (name = "person_id")
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	
-	@NotNull
-	@NotBlank (message = "Name can't be empty")
 	@Column (name = "full_name")
-	private String name;
+	@Pattern (regexp = "[А-ЯЁ][-А-яЁё]+ [А-ЯЁ][-А-яЁё]+ [А-ЯЁ][-А-яЁё]+", message = "Некорректный ввод ФИО")
+	@NotEmpty (message = "Имя не может быть пустым")
+	private String full_name;
 	
+	@Past (message = "Время не может быть в будущем")
+	@NotNull (message = "Дата рождения не может быть пустой")
 	@Column (name = "birth_date")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "y-MM-dd")
 	private Date birth_date;
 	
 	@ToString.Exclude
-	@OneToMany (mappedBy = "customer")
-	private List<Product>products;
+	@OneToMany (mappedBy = "owner")
+	private List<Book> books;
 	
-	public Person (String name, Date birth_date)
+	public Person(String full_name, Date birth_date)
 	{
-		this.name = name;
-		this.birth_date = birth_date;
+		setBirth_date(birth_date);
+		setFull_name(full_name);
 	}
 }

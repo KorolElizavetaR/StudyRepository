@@ -1,5 +1,8 @@
 package koroler.junit;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.util.Collection;
 import java.util.List;
 
@@ -8,6 +11,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Test;
@@ -16,7 +20,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.EnumSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.xmlunit.assertj.XmlAssert;
+import org.xmlunit.assertj.XmlAssert; 
 
 import net.javacrumbs.jsonunit.assertj.JsonAssertions;
 
@@ -71,14 +75,13 @@ class JunitApplicationTest {
 		Assertions.assertThat(nums).isGreaterThan(17);
 	}
 	
-//	@EnumSource
-//	void EnumTest()
-//	{}
-	
-//	@TestFactory -- !!!
-//	Collection<DynamicTest> TestFactory()
-//	{
-//		return List.of()
-//	}
+
+	@Test
+	@Disabled
+	void MathematicTest()
+	{
+		 Throwable exception = assertThrows(ArithmeticException.class, () -> Mathematics.divide(2., 0.));
+		 Mathematics.divide(2., 0.);
+	}
 
 }
