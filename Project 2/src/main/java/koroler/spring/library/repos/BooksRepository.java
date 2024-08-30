@@ -11,5 +11,6 @@ import koroler.spring.library.models.Person;
 
 @Repository
 public interface BooksRepository extends JpaRepository<Book, Integer>{
-	List <Book> findByOwner(Person owner);
+	//List <Book> findByOwner(Person owner);
+	List <Book> findByBookNameContainingIgnoreCase(String str);
 }

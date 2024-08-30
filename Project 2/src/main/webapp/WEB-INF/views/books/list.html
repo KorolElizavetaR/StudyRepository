@@ -5,12 +5,20 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<form th:action="@{/books}">
+		<input type="text" name = "like" th:value="${like}"/>
+		<input type="submit" value = "Искать книгу"/>
+	</form>
+	<br/>
+	<hr/>
 <div th:each = "book : ${books}">
-	<a th:href = "@{/books/{id}(id=${book.getId()})}" th:text = "|'${book.getBook_name()}' by ${book.getBook_author()}|"></a>
+	<a th:href = "@{/books/{id}(id=${book.getId()})}" th:text = "|'${book.getBookName()}' by ${book.getBook_author()}|"></a>
 	</div>
 	<hr/>
-	<br/>
-	<form action="/people"><input type="submit" value = "Перейти к читателям" ></form>
-	<form action="/books/add"><input type="submit" value = "Добавить книгу" ></form>
+	<form action="/people"><input type="submit" value = "Перейти к читателям"></form>
+	<form action="/books/add"><input type="submit" value = "Добавить книгу"></form>
+	<hr/>
+	<p>СТРАНИЦЫ</p>
+	<a th:href="@{/books?page=0}" th:value = "0"></a>
 </body>
 </html>

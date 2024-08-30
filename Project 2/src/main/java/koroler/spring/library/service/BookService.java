@@ -3,6 +3,8 @@ package koroler.spring.library.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,6 +34,12 @@ public class BookService {
 		}
 		return book;
 	}
+	
+	public List <Book> findBookByLikeStr(String str)
+	{
+		return bookRepos.findByBookNameContainingIgnoreCase(str);
+	}
+	
 	
 	@Transactional
 	public void saveBook(Book book)
@@ -72,6 +80,11 @@ public class BookService {
 			book.setOwner(null);
 			book.setTimestamp(null);
 		}
+	}
+	
+	public List <Book> findBookSortedTrue(Integer page)
+	{
+		return bookRepos.findAll(PageRequest.of(page, 5, Sort.by("bookName"))).getContent();
 	}
 
 }

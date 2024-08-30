@@ -6,10 +6,12 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -27,6 +29,7 @@ import org.thymeleaf.spring6.SpringTemplateEngine;
 import org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring6.view.ThymeleafViewResolver;
 
+import koroler.spring.library.aop.BookAspect;
 import lombok.RequiredArgsConstructor;
 
 @Configuration
@@ -36,6 +39,7 @@ import lombok.RequiredArgsConstructor;
 @EnableTransactionManagement
 @EnableJpaRepositories("koroler.spring.library.repos")
 @RequiredArgsConstructor
+// @EnableAspectJAutoProxy (proxyTargetClass=true)
 public class ConfigClass implements WebMvcConfigurer{
 	@Autowired
 	private final ApplicationContext context;
@@ -112,5 +116,11 @@ public class ConfigClass implements WebMvcConfigurer{
 		entManager.setJpaVendorAdapter(vendorAdapter);
 		entManager.setJpaProperties(hibernateProperties());
 		return entManager;
+	}
+	
+	@Bean
+	public BookAspect myAspect()
+	{
+		return new BookAspect();
 	}
 }

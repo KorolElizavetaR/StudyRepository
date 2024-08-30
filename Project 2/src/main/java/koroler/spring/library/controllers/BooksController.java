@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.validation.Valid;
 import koroler.spring.library.models.Book;
@@ -29,9 +30,17 @@ public class BooksController {
 	
 	// Получить список всех книг
 	@GetMapping ()
-	public String GetBooks(Model model)
+	public String GetBooks(Model model, @RequestParam (value = "page", defaultValue = "0", required = true) String page, @RequestParam (value = "like", required = false) String like)
 	{
-		model.addAttribute("books", bookService.getBookList());
+		if (like != null && !(like.isBlank())) 
+		{
+			model.addAttribute("books", bookService.findBookByLikeStr(like));
+			model.addAttribute("like", like);
+		}
+		else
+		{
+			model.addAttribute("books", bookService.findBookSortedTrue(Integer.valueOf(page)));
+		}
 		return "books/list";
 	}
 	

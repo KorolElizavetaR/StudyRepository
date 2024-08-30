@@ -35,7 +35,7 @@ public class Book {
 	
 	@NotBlank (message = "Название книги не может быть пустым")
 	@Column (name = "book_name")
-	private String book_name;
+	private String bookName;
 	
 	@Column (name = "book_author")
 	@NotBlank (message = "Автор книги не может быть пустым")
@@ -59,7 +59,7 @@ public class Book {
 	public Book(String book_name, String book_author)
 	{
 		setBook_author(book_author);
-		setBook_name(book_name);
+		setBookName(book_name);
 		setExpired();
 	}
 	

@@ -5,7 +5,7 @@
 <title>book</title>
 </head>
 <body>
-	<h1 th:text = "|'${book.getBook_name()}' by ${book.getBook_author()}|"></h1>
+	<h1 th:text = "|'${book.getBookName()}' by ${book.getBook_author()}|"></h1>
 	<hr/>
 	Читатель:
 	<div th:if = "${owner == null}" th:text = "|У книги нет читателей|">
