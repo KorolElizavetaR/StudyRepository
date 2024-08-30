@@ -25,7 +25,12 @@ public class BookService {
 	
 	public Book findBook(Integer id)
 	{
-		return bookRepos.findById(id).orElse(null);
+		Book book = bookRepos.findById(id).orElse(null);
+		if (book != null)
+		{
+			book.setExpired();
+		}
+		return book;
 	}
 	
 	@Transactional
@@ -41,14 +46,32 @@ public class BookService {
 		bookRepos.save(newBook);
 	}
 	
-	public void deletePerson(Integer id)
+	@Transactional
+	public void deleteBook(Integer id)
 	{
 		bookRepos.deleteById(id);
 	}
-//	
-//	public Person getBookByPersonId(Integer id)
-//	{
-//		return bookRepos.getBookByPersonId(id);
-//	}
+
+	@Transactional
+	public void addOwner(Person person, Integer bookId)
+	{
+		Book book = bookRepos.findById(bookId).orElse(null);
+		if (book != null)
+		{
+			book.setOwner(person);
+			book.setTimestamp();
+		}
+	}
+	
+	@Transactional
+	public void removeOwner(Integer bookId)
+	{
+		Book book = bookRepos.findById(bookId).orElse(null);
+		if (book != null)
+		{
+			book.setOwner(null);
+			book.setTimestamp(null);
+		}
+	}
 
 }

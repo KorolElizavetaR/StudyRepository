@@ -1,6 +1,9 @@
 package koroler.spring.library.controllers;
 
 
+import java.util.List;
+
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,8 +45,8 @@ public class PeopleController {
 	public String personPage(Model model, @PathVariable ("id") Integer id)
 	{
 		Person person = peopleService.findPerson(id);
-		model.addAttribute("person", peopleService.findPerson(id));
-		model.addAttribute("book", person.getBooks());
+		model.addAttribute("person", person);
+		model.addAttribute("books", person.getBooks());
 		return "people/person";
 	}
 	
@@ -57,12 +60,11 @@ public class PeopleController {
 	@PostMapping ("/add")
 	public String submitAddPerson(@Valid Person person, BindingResult bindingResult)
 	{
-		// Короче на дате проверочка кринж
 		if (bindingResult.hasErrors())
 		{
 			return "people/addPerson";
 		}
-		//peopleDAO.addPerson(person);
+		peopleService.savePerson(person);
 		return "redirect:/people";
 	}
 	
@@ -70,7 +72,7 @@ public class PeopleController {
 	@DeleteMapping ("/{id}")
 	public String deletePerson(@PathVariable("id") Integer id)
 	{
-		//peopleDAO.deletePerson(id);
+		peopleService.deletePerson(id);
 		return "redirect:/people";
 	}
 	
@@ -78,8 +80,8 @@ public class PeopleController {
 	@GetMapping ("/{id}/edit")
 	public String editBook(Model model, @PathVariable ("id") Integer id)
 	{
-		//model.addAttribute("person", peopleDAO.getPerson(id));
-		//model.addAttribute("person_ID", id);
+		model.addAttribute("person", peopleService.findPerson(id));
+		model.addAttribute("person_ID", id);
 		return "people/editPerson";
 	}
 	
@@ -90,7 +92,7 @@ public class PeopleController {
 		{
 			return "people/editPerson";
 		}
-		//peopleDAO.updatePerson(person, id);
+		peopleService.updatePerson(id, person);
 		return "redirect:/people/{person_ID}";
 	}
 }

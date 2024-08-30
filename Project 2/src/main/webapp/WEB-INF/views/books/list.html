@@ -6,7 +6,7 @@
 </head>
 <body>
 <div th:each = "book : ${books}">
-	<a th:href = "@{/books/{id}(id=${book.getBook_id()})}" th:text = "|'${book.getBook_name()}' by ${book.getBook_author()}|"></a>
+	<a th:href = "@{/books/{id}(id=${book.getId()})}" th:text = "|'${book.getBook_name()}' by ${book.getBook_author()}|"></a>
 	</div>
 	<hr/>
 	<br/>

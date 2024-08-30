@@ -11,8 +11,8 @@
 		<div th:if="${#fields.hasErrors('full_name')}" th:errors="*{full_name}">Name Error</div>
 	<br/>
 		<label for="date">Введите дату рождения:</label>
-		<input type="date" th:field = "*{birth_year}" id = "date" value="2022-01-01" min="1920-01-01" pattern="\d{4}-\d{2}-\d{2}"/>
-		<div th:if="${#fields.hasErrors('birth_year')}" th:errors="*{birth_year}">birth_year Error</div>
+		<input type="date" th:field = "*{birth_date}" id = "date" value="2022-01-01" min="1920-01-01" pattern="\d{4}-\d{2}-\d{2}"/>
+		<div th:if="${#fields.hasErrors('birth_date')}" th:errors="*{birth_date}">birth_date Error</div>
 	<br/>
 		<input type="submit" value = "Добавить"/>
 	</form>

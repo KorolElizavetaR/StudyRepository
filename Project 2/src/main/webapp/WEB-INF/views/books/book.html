@@ -10,25 +10,28 @@
 	Читатель:
 	<div th:if = "${owner == null}" th:text = "|У книги нет читателей|">
 	</div>
-	<form th:if = "${owner == null}" th:method = "PATCH" th:action = "@{/books/{id}/add(id=${book.getBook_id()})}">
+	<form th:if = "${owner == null}" th:method = "PATCH" th:action = "@{/books/{id}/add(id=${book.getId()})}">
 		<label for="person">Выберите читателя:</label>
-			<select id = "person" th:object="${person}" th:field = "*{person_id}">
-				<option th:each="person : ${people}" th:value = "${person.getPerson_id()}" th:text="${person.getFull_name()}">
+			<select id = "person" th:object="${person}" th:field = "*{id}">
+				<option th:each="person : ${people}" th:value = "${person.getId()}" th:text="${person.getFull_name()}">
 				</option>
 			</select>
 			<input type ="submit" value="Назначить читателя"/>
 		</form>
 		
-	<div th:unless = "${owner == null}" th:text = "${owner.getFull_name()}"></div>
-	<form th:unless = "${owner == null}" th:method = "PATCH" th:action = "@{/books/{id}/remove(id=${book.getBook_id()})}">
+	<p th:unless = "${owner == null}" th:text = "${owner.getFull_name()}"/>	
+	<p th:if = "!${owner == null} and ${book.isExpired()}" style="color:#FF0000" th:text = "|Дата взятия книги: ${book.getTimestamp()} (просрочено)|"/>
+	<p th:if = "!${owner == null} and !${book.isExpired()}" th:text = "|Дата взятия книги: ${book.getTimestamp()}|"/>
+
+	<form th:unless = "${owner == null}" th:method = "PATCH" th:action = "@{/books/{id}/remove(id=${book.getId()})}">
 			<input type ="submit" value="Убрать читателя"/>
 	</form>
 	<hr/>
 	<form action = "/books">
 		<input type="submit" value="Вернуться к книгам"/>
 	</form>
-	<form th:action = "@{/books/{id}/edit(id=${book.getBook_id()})}">
+	<form th:action = "@{/books/{id}/edit(id=${book.getId()})}">
 		<input type="submit" value="Редактировать книгу"/>
-	</form>
+	</form>`
 </body>
 </html>

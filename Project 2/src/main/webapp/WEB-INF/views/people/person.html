@@ -6,10 +6,10 @@
 </head>
 <body>
 	<h1 th:text = "${person.getFull_name()}"></h1>
-	<h3 th:text = "|Дата рождения: ${person.getBirth_year()}|"></h3>
+	<h3 th:text = "|Дата рождения: ${person.getBirth_date()}|"></h3>
 	<hr/>
 	<h4>Книги:</h4>
-	<div th:if= "${books.isEmpty()}" th:text = "|У этого человека нет книг|"></div>
+	<div th:if= "${books == null}" th:text = "|У этого человека нет книг|"></div>
 	<div th:else th:each = "book : ${books}">
 			<p th:text = "|'${book.getBook_name()}' by ${book.getBook_author()}|"></p>
 	</div>
@@ -17,10 +17,10 @@
 	<form action = "/people">
 		<input type="submit" value="Вернуться на главную страницу"/>
 	</form>
-	<form th:method="DELETE" th:action="@{/people/{id}(id=${person.getPerson_id()})}">
+	<form th:method="DELETE" th:action="@{/people/{id}(id=${person.getId()})}">
     	<input type="submit" value="Удалить читателя"/>
     </form> 
-    <form th:action = "@{/people/{id}/edit(id=${person.getPerson_id()})}">
+    <form th:action = "@{/people/{id}/edit(id=${person.getId()})}">
 		<input type="submit" value="Редактировать читателя"/>
 	</form>
 </body>

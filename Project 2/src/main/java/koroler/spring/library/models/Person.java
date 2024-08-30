@@ -1,7 +1,9 @@
 package koroler.spring.library.models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -54,9 +56,30 @@ public class Person {
 	@OneToMany (mappedBy = "owner")
 	private List<Book> books;
 	
+	public Person(String full_name, Date birth_date, List <Book> books)
+	{
+		this(full_name, birth_date);
+		this.books = books;
+	}
+	
 	public Person(String full_name, Date birth_date)
 	{
 		setBirth_date(birth_date);
 		setFull_name(full_name);
+	}
+	
+	public void addBook(Book book)
+	{
+		books.add(book);
+	}
+	
+	public void removeBook(Book book)
+	{
+		books.remove(book);
+	}
+	
+	public List<Book> getBooks()
+	{
+		return books.isEmpty() ? null : this.books;
 	}
 }

@@ -41,8 +41,9 @@ public class BooksController {
 	{
 		Book book = bookService.findBook(id);
 		model.addAttribute("book", book);
-		model.addAttribute("owner", peopleService.findPerson(book.getOwner().getId())); // Добавить в PeopleService метод по поиску по человеку
+		model.addAttribute("owner", book.getOwner());
 		model.addAttribute("people", peopleService.getPeopleList());
+			System.out.println(book.isExpired()); // служебная строчка, потом удалить
 		return "books/book";
 	}
 	
@@ -50,7 +51,7 @@ public class BooksController {
 	@PatchMapping ("/{id}/add")
 	public String addBookOwner(Person person, @PathVariable("id") Integer id)
 	{
-		//bookService.savePerson(person.getId(), id);
+		bookService.addOwner(person, id);
 		return "redirect:/books/{id}";
 	}
 	
@@ -58,7 +59,7 @@ public class BooksController {
 	@PatchMapping ("/{id}/remove")
 	public String removeBookOwner(@PathVariable("id") Integer id)
 	{
-		//booksDAO.addOwner(null, id);
+		bookService.removeOwner(id);
 		return "redirect:/books/{id}";
 	}
 	
@@ -76,7 +77,7 @@ public class BooksController {
 		{
 			return "books/addbook";
 		}
-		//booksDAO.addBook(book);
+		bookService.saveBook(book);
 		return "redirect:/books";
 	}
 	
@@ -84,19 +85,19 @@ public class BooksController {
 	@GetMapping ("/{id}/edit")
 	public String editBook(Model model, @PathVariable ("id") Integer id)
 	{
-//		model.addAttribute("book", booksDAO.getBook(id));
-//		model.addAttribute("book_ID", id);
+		model.addAttribute("book", bookService.findBook(id));
+		model.addAttribute("book_ID", id);
 		return "books/editbook";
 	}
 	
 	@PatchMapping ("/{book_ID}")
 	public String commitEditBook(@Valid @ModelAttribute ("book") Book book, BindingResult bindingResult, @PathVariable ("book_ID") Integer id)
 	{
-//		if (bindingResult.hasErrors())
-//		{
-//			return "books/editbook";
-//		}
-//		booksDAO.updateBook(book, id);
+		if (bindingResult.hasErrors())
+		{
+			return "books/editbook";
+		}
+		bookService.updateBook(id, book);
 		return "redirect:/books/{book_ID}";
 	}
 }

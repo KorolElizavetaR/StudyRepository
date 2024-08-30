@@ -22,7 +22,7 @@ public class PeopleService {
 		return peopleRepos.findAll();
 	}
 	
-	public Person findPerson(Integer id)
+	public Person findPerson(Integer id) //optional
 	{
 		return peopleRepos.findById(id).orElse(null);
 	}
@@ -40,6 +40,7 @@ public class PeopleService {
 		peopleRepos.save(newPerson);
 	}
 	
+	@Transactional
 	public void deletePerson(Integer id)
 	{
 		peopleRepos.deleteById(id);
