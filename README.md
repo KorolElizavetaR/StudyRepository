@@ -22,7 +22,7 @@
 + [Spring MVC w/o Database: Validation, Controllers, Models](https://github.com/KorolElizavetaR/SpringCourse/tree/master/RESTnDAOwoDB/src/main/java/koroler/spring/RESTnDAOwoDB)
 + [@RequestParam annotation.](https://github.com/KorolElizavetaR/SpringCourse/tree/master/RequestParamSMVC). *@RequestParam необходим когда указываются параметры в URL. sobaka.com/dogs?color=white. Относится к GET-запросам, т.к. эти данные сервером не обрабатываются(?). Все находится в папке test, потому что...потому что.*
 + [Spring Validator. Валидация данных.](https://github.com/KorolElizavetaR/SpringCourse/tree/master/SpringValidator) *Данные по возможности обрабатываются как со стороны сервера, так и на базе данных.*
-+ [Project 1: Библиотека. SMVC, JDBCT, Validation.](https://github.com/KorolElizavetaR/SpringCourse/tree/master/project1_library)
+[Project 1: Библиотека. SMVC, JDBCT, Validation.](https://github.com/KorolElizavetaR/SpringCourse/tree/master/project1_library)
 ### Database usage
 + [JDBC](https://github.com/KorolElizavetaR/SpringCourse/tree/master/MVCnDB)
 + [JDBC. Prepared statements.](https://github.com/KorolElizavetaR/SpringCourse/tree/master/PreparedStatementSQL)
@@ -40,3 +40,7 @@
 + [Spring JPA. Первое приложение](https://github.com/KorolElizavetaR/StudyRepository/tree/master/SpringJPA)
 + [Spring JPA. Работа с OneToMany. Кастомные запросы. Решение проблем с датами.](https://github.com/KorolElizavetaR/StudyRepository/tree/master/SpringJPACustomQueries)
 **После этого в курсе есть еще несколько тем: решение N+1, ENUMs, Load vs Get, Pagination And Sorting, Transient. Эти темы не хотелось бы выносить в проекты. Если необходимо воспользоваться данной информацией, искать в Notion**
+[Project 2: Библиотека. Project1 на SJPA; Spring Boot; Таймстемпы; Паганация и Сортировка.](https://github.com/KorolElizavetaR/StudyRepository/tree/master/Project2%20on%20SpringBoot)
+### Spring Security
++ [Первое приложение](https://github.com/KorolElizavetaR/StudyRepository/tree/master/SpringSecurityFirstApp)
++ [Авторизация с уч. данными из бд.](https://github.com/KorolElizavetaR/StudyRepository/tree/master/AuthenticationWithDB). Замечание: класс-наследник от AuthenticationProvider используется, когда авторизация кастомная. Здесь этот класс закомментирован.
