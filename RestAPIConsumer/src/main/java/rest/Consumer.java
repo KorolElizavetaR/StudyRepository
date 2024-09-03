@@ -52,7 +52,6 @@ public class Consumer {
 		RestTemplate restTemp = new RestTemplate();
 		String url = "http://localhost:8080/api/hello";
 		System.out.println(restTemp.getForObject(url, String.class));
-
 	}
 }
 	
