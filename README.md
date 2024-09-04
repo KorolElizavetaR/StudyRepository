@@ -41,6 +41,11 @@
 + [Spring JPA. Работа с OneToMany. Кастомные запросы. Решение проблем с датами.](https://github.com/KorolElizavetaR/StudyRepository/tree/master/SpringJPACustomQueries)
 <br/> **После этого в курсе есть еще несколько тем: решение N+1, ENUMs, Load vs Get, Pagination And Sorting, Transient. Эти темы не хотелось бы выносить в проекты. Если необходимо воспользоваться данной информацией, искать в Notion** <br/>
 #### [Project 2: Библиотека. Project1 на SJPA; Spring Boot; Таймстемпы; Паганация и Сортировка.](https://github.com/KorolElizavetaR/StudyRepository/tree/master/Project2%20on%20SpringBoot)
+### Spring REST
++ [REST API - Использование существующих API](https://github.com/KorolElizavetaR/StudyRepository/tree/master/RestAPIConsumer)
++ [Spring REST. Rest-контроллер, возвращение JSON-а при ошибке выполнения запроса.](https://github.com/KorolElizavetaR/StudyRepository/tree/master/SpringREST)
++ [Data Access Object](https://github.com/KorolElizavetaR/StudyRepository/tree/master/DTOREST)
 ### Spring Security
 + [Первое приложение](https://github.com/KorolElizavetaR/StudyRepository/tree/master/SpringSecurityFirstApp)
 + [Авторизация с уч. данными из бд.](https://github.com/KorolElizavetaR/StudyRepository/tree/master/AuthenticationWithDB). Замечание: класс-наследник от AuthenticationProvider используется, когда авторизация кастомная. Здесь этот класс закомментирован.
++ [Обращение к кастомной странице авторизации](https://github.com/KorolElizavetaR/StudyRepository/tree/master/CustomLogPage)
