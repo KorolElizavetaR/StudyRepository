@@ -5,6 +5,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import korol.spring.security.pojo.Person;
 import korol.spring.security.security.PersonDetails;
@@ -21,6 +22,20 @@ public class HelloController {
 		System.out.println(person);
 		model.addAttribute("person", person);
 		return "hello/userinf";
+	}
+	
+	@ResponseBody
+	@GetMapping ("/home")
+	public String homePage()
+	{
+		return "home";
+	}
+	
+	@ResponseBody
+	@GetMapping ("/hello")
+	public String helloPage()
+	{
+		return "HELLO YAAAY";
 	}
 
 }

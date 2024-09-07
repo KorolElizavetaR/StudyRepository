@@ -32,18 +32,6 @@ public class SecurityConfig {
 		auth.userDetailsService(persService);
 	}
 	
-//	@Bean
-//	public UserDetailsService userDetailsService() {
-//		UserDetails user =
-//			 User.withDefaultPasswordEncoder()
-//				.username("user")
-//				.password("password")
-//				.roles("USER")
-//				.build();
-//
-//		return new InMemoryUserDetailsManager(user);
-//	}
-	
 	@SuppressWarnings("deprecation")
 	@Bean
 	public PasswordEncoder getPasswordEncoder()
@@ -54,10 +42,10 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception
 	{
-		http.authorizeHttpRequests((requests) -> requests.requestMatchers("/", "/home").permitAll().anyRequest().authenticated()).
-			formLogin((form) -> form.loginPage("/auth/login").permitAll()).
+		// anyRequest().authenticated() - все остальные url требуют аутендефикации 
+		http.authorizeHttpRequests((requests) -> requests.requestMatchers("/home", "/error").permitAll().anyRequest().authenticated()). //requestMatcher - дает доступ все к страницам
+			formLogin((form) -> form.loginPage("/auth/login").defaultSuccessUrl("/hello", true).permitAll()).
 			logout((logout) -> logout.permitAll());
-		// http.formLogin().loginPage("auth/login").loginProcessingUrl("/process_login").defaultSuccessUrl("", true).failureUrl("/auth/login?error"); 
 		return http.build();
 	}
 }
