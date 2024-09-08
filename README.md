@@ -49,5 +49,7 @@
 + [Data Access Object](https://github.com/KorolElizavetaR/StudyRepository/tree/master/DTOREST)
 ### Spring Security
 + [Первое приложение](https://github.com/KorolElizavetaR/StudyRepository/tree/master/SpringSecurityFirstApp)
-+ [Авторизация с уч. данными из бд.](https://github.com/KorolElizavetaR/StudyRepository/tree/master/AuthenticationWithDB). Замечание: класс-наследник от AuthenticationProvider используется, когда авторизация кастомная. Здесь этот класс закомментирован.
-+ [Обращение к кастомной странице авторизации](https://github.com/KorolElizavetaR/StudyRepository/tree/master/CustomLogPage)
++ [Авторизация с уч. данными из бд. Обращение к кастомной странице авторизации, разлогирование, шифрование паролей](https://github.com/KorolElizavetaR/StudyRepository/tree/master/BCrypt) Замечание: класс-наследник от AuthenticationProvider используется, когда авторизация кастомная.
+### Docker
+[Контейнеризация приложения](https://github.com/KorolElizavetaR/StudyRepository/tree/master/DockeriseThisProject)
+[Проект 2, собранный на Docker Compose](https://github.com/KorolElizavetaR/StudyRepository/tree/master/Project2DOCKER)
