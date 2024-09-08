@@ -29,22 +29,21 @@ public class SecurityConfig {
 
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception
 	{
-		auth.userDetailsService(persService);
+		auth.userDetailsService(persService).passwordEncoder(getPasswordEncoder());
 	}
 	
-	@SuppressWarnings("deprecation")
 	@Bean
 	public PasswordEncoder getPasswordEncoder()
 	{
-		return NoOpPasswordEncoder.getInstance();
+		return new BCryptPasswordEncoder();
 	}
 	
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception
 	{
 		// anyRequest().authenticated() - все остальные url требуют аутендефикации 
-		http.authorizeHttpRequests((requests) -> requests.requestMatchers("/home", "/error").permitAll().anyRequest().authenticated()). //requestMatcher - дает доступ все к страницам
-			formLogin((form) -> form.loginPage("/auth/login").defaultSuccessUrl("/hello", true).permitAll()).
+		http.authorizeHttpRequests((requests) -> requests.requestMatchers("/home", "/error", "auth/reg").permitAll().anyRequest().authenticated()). //requestMatcher - дает доступ все к страницам
+			formLogin((form) -> form.loginPage("/auth/login").defaultSuccessUrl("/hello", true).failureUrl("/auth/login?error").permitAll()).
 			logout((logout) -> logout.permitAll());
 		return http.build();
 	}

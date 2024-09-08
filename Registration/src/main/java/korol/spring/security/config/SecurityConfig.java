@@ -44,7 +44,7 @@ public class SecurityConfig {
 	{
 		// anyRequest().authenticated() - все остальные url требуют аутендефикации 
 		http.authorizeHttpRequests((requests) -> requests.requestMatchers("/home", "/error", "auth/reg").permitAll().anyRequest().authenticated()). //requestMatcher - дает доступ все к страницам
-			formLogin((form) -> form.loginPage("/auth/login").defaultSuccessUrl("/hello", true).permitAll()).
+			formLogin((form) -> form.loginPage("/auth/login").defaultSuccessUrl("/hello", true).failureUrl("/auth/login?error").permitAll()).
 			logout((logout) -> logout.permitAll());
 		return http.build();
 	}

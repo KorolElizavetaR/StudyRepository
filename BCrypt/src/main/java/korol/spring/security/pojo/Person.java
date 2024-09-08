@@ -1,4 +1,4 @@
-package korol.spring.security.pojo;
+ package korol.spring.security.pojo;
 
 import java.util.Date;
 
@@ -42,16 +42,8 @@ public class Person {
 	@NotEmpty
 	private String password;
 	
-	@Past 
-	@NotNull 
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "y-MM-dd")
-	@Column (name = "birth_date")
-	private Date birth_date;
-	
-	public Person (String username, String password, Date birth_date)
+	public Person (String username, String password)
 	{
-		this.birth_date = birth_date;
 		this.password = password;
 		this.username = username;
 	}
