@@ -11,7 +11,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
-	@SuppressWarnings("removal")
 	@Bean
 	public SecurityFilterChain applicationSecurity(HttpSecurity http) throws Exception
 	{
@@ -19,7 +18,9 @@ public class SecurityConfig {
 			cors(cors -> cors.disable()).
 			csrf(csrf -> csrf.disable()).
 			sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).
-			formLogin();
+			formLogin(form -> form.disable()).
+			securityMatcher("/**").
+			authorizeHttpRequests(registry -> registry.requestMatchers("/", "/auth/login").permitAll().anyRequest().authenticated());
 		return http.build();
 	}
 }

@@ -13,4 +13,10 @@ public class HelloController {
 	{
 		return "Hello world!";
 	}
+	
+	@GetMapping ("/")
+	public String homepage()
+	{
+		return "accessible by everyone!";
+	}
 }
