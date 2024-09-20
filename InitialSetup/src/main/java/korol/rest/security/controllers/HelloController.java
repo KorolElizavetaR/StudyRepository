@@ -19,4 +19,10 @@ public class HelloController {
 	{
 		return "accessible by everyone!";
 	}
+	
+	@GetMapping("/no")
+	private String secured()
+	{
+		return "You are logged in";
+	}
 }

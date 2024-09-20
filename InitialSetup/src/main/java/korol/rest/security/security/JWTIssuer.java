@@ -10,8 +10,13 @@ import org.springframework.stereotype.Component;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 
+import lombok.RequiredArgsConstructor;
+
 @Component
+@RequiredArgsConstructor
 public class JWTIssuer {
+	private final JWTProperties properties;
+	
 	public String issue(long userId, String username, List<String> authorities)
 	{
 		return JWT.create().
@@ -19,6 +24,6 @@ public class JWTIssuer {
 				withExpiresAt(Instant.now().plus(Duration.of(1, ChronoUnit.DAYS))).
 				withClaim("un", username).
 				withClaim("roles", authorities).
-				sign(Algorithm.HMAC256("secret"));
+				sign(Algorithm.HMAC256(properties.getSecretKey()));
 	}
 }
