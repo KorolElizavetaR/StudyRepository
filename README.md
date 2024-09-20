@@ -50,6 +50,7 @@
 ### Spring Security
 + [Первое приложение](https://github.com/KorolElizavetaR/StudyRepository/tree/master/SpringSecurityFirstApp)
 + [Авторизация с уч. данными из бд. Обращение к кастомной странице авторизации, разлогирование, шифрование паролей](https://github.com/KorolElizavetaR/StudyRepository/tree/master/BCrypt) Замечание: класс-наследник от AuthenticationProvider используется, когда авторизация кастомная.
++ [Spring+REST. JWT.](https://github.com/KorolElizavetaR/StudyRepository/tree/master/InitialSetup)
 ### Docker
 [Контейнеризация приложения](https://github.com/KorolElizavetaR/StudyRepository/tree/master/DockeriseThisProject)
 [Проект 2, собранный на Docker Compose](https://github.com/KorolElizavetaR/StudyRepository/tree/master/Project2DOCKER)
