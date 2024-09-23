@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 
+import korol.rest.security.models.UserPrincipal;
+
 public class UserPrincipleAuthToken extends AbstractAuthenticationToken {
 	private final UserPrincipal principal;
 
@@ -13,18 +15,15 @@ public class UserPrincipleAuthToken extends AbstractAuthenticationToken {
 		super(principal.getAuthorities());
 		this.principal = principal;
 		setAuthenticated(true);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public Object getCredentials() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public UserPrincipal getPrincipal() {
-		// TODO Auto-generated method stub
 		return principal;
 	}
 

@@ -12,6 +12,10 @@ import com.auth0.jwt.algorithms.Algorithm;
 
 import lombok.RequiredArgsConstructor;
 
+/*
+ * 	This class creates a JWT token for user
+ */
+
 @Component
 @RequiredArgsConstructor
 public class JWTIssuer {

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
 
+import korol.rest.security.models.UserPrincipal;
+
 @Component
 public class JWTToPrincipalConverter {
 	

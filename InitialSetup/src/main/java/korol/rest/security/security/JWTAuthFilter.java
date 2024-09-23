@@ -14,6 +14,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 
+import korol.rest.security.models.UserPrincipal;
+
 @Component
 @RequiredArgsConstructor
 public class JWTAuthFilter extends OncePerRequestFilter{
