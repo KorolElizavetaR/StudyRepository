@@ -50,6 +50,8 @@
 ### Spring Security
 + [Первое приложение](https://github.com/KorolElizavetaR/StudyRepository/tree/master/SpringSecurityFirstApp)
 + [Авторизация с уч. данными из бд. Обращение к кастомной странице авторизации, разлогирование, шифрование паролей](https://github.com/KorolElizavetaR/StudyRepository/tree/master/BCrypt) Замечание: класс-наследник от AuthenticationProvider используется, когда авторизация кастомная.
++ [Регистрация](https://github.com/KorolElizavetaR/StudyRepository/tree/master/Registration/src/main/java/korol/spring/security/security)
++ [Авторизация: разделение по ролям](https://github.com/KorolElizavetaR/StudyRepository/blob/master/Authorization/src/main/java/korol/spring/security/security/PersonDetails.java)
 + [Spring+REST. JWT.](https://github.com/KorolElizavetaR/StudyRepository/tree/master/InitialSetup)
 ### Docker
 [Контейнеризация приложения](https://github.com/KorolElizavetaR/StudyRepository/tree/master/DockeriseThisProject)
