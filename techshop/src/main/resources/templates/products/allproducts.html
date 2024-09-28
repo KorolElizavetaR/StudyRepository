@@ -7,7 +7,10 @@
 <body>
 <H1>TECHSHOP</H1>
 <div th:each = "product : ${products}">
-	<div th:text = "${product}"></div> 
+	<p>
+		<b th:text = "|${product.getTitle()} : ${product.getPrice()}|"></b>
+		<a th:href = "@{/products/{id}(id=${product.getId()})}" th:text = "|Подробнее...|"></a>
+	</p>
 </div> 
 </body>
 </html>

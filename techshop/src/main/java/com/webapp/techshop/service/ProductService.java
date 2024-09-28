@@ -10,9 +10,11 @@ import com.webapp.techshop.model.Product;
 import com.webapp.techshop.repository.ProductRepository;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j // Логирование ??
 @Transactional (readOnly = true)
 public class ProductService {
 	private final ProductRepository productRepository;
@@ -30,6 +32,7 @@ public class ProductService {
 	@Transactional
 	public Product addProduct(Product product)
 	{
+		log.info("Saving ", product);
 		return productRepository.save(product);
 	}
 	
