@@ -41,8 +41,11 @@ public class ProductService {
 	}
 	
 	@Transactional
-	public void DeleteProduct(Integer id)
+	public boolean DeleteProduct(Integer id)
 	{
-		productRepository.deleteById(id);
+		Boolean itemExists = productRepository.existsById(id);
+		if (itemExists)
+			productRepository.deleteById(id);
+		return itemExists;
 	}
 }
