@@ -23,28 +23,40 @@ import com.openlibrary.api.response.model.OpenLibraryResponse;
 public class Main {
 	
 	public static void main(String[] args) throws URISyntaxException, IOException, InterruptedException {
-		String fullUrl = "https://openlibrary.org/search.json?q=harry&"
-				+ "fields=cover_i,key,title,author_name,editions,editions.publisher,"
-				+ "editions.language,editions.isbn&limit=10";
+//		String fullUrl = "https://openlibrary.org/search.json?q=harry&"
+//				+ "fields=cover_i,key,title,author_name,editions,editions.publisher,"
+//				+ "editions.language,editions.isbn&limit=10";
+//        
+//		HttpRequest getRequest = HttpRequest.
+//			newBuilder().
+//			uri(new URI(fullUrl)).GET().header("Accept", "application/json").build();
+//		HttpResponse<String> response = HttpClient.newHttpClient().send(getRequest, BodyHandlers.ofString());
+//		
+//		JsonElement jsonElement = JsonParser.parseString(response.body());
+//        JsonArray docsArray = jsonElement.getAsJsonObject().getAsJsonArray("docs");
+//
+//        Gson gson = new GsonBuilder().create();
+//        List<Document> documents = new ArrayList<>();
+//
+//        // Deserialize each document in the docs array
+//        for (JsonElement docElement : docsArray) {
+//            Document document = gson.fromJson(docElement, Document.class);
+//            documents.add(document);
+//        }
+//        
+//        documents.stream().forEach(System.out::println);
         
 		HttpRequest getRequest = HttpRequest.
 			newBuilder().
-			uri(new URI(fullUrl)).GET().header("Accept", "application/json").build();
+			uri(new URI("https://openlibrary.org/api/books?bibkeys=ISBN:9780545790352&jscmd=data&format=json")).GET().header("Accept", "application/json").build();
 		HttpResponse<String> response = HttpClient.newHttpClient().send(getRequest, BodyHandlers.ofString());
 		
 		JsonElement jsonElement = JsonParser.parseString(response.body());
-        JsonArray docsArray = jsonElement.getAsJsonObject().getAsJsonArray("docs");
+        JsonArray docsArray = jsonElement.getAsJsonObject().getAsJsonArray("ISBN:9780545790352").getAsJsonArray("description");
 
         Gson gson = new GsonBuilder().create();
         List<Document> documents = new ArrayList<>();
-
-        // Deserialize each document in the docs array
-        for (JsonElement docElement : docsArray) {
-            Document document = gson.fromJson(docElement, Document.class);
-            documents.add(document);
-        }
         
-        documents.stream().forEach(System.out::println);
 	}
 	
 }
