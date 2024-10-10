@@ -1,5 +1,6 @@
 package com.mockito.junit.service;
 
+import static org.junit.Assert.assertThrows;
 import static org.mockito.Mockito.when;
 
 import java.util.Optional;
@@ -17,6 +18,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.mockito.junit.model.Product;
 import com.mockito.junit.repository.ProductRepository;
+
+import jakarta.validation.ValidationException;
 
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest 
@@ -38,9 +41,10 @@ public class ProductServiceTest {
 			
 		when(productRepository.save(Mockito.any(Product.class))).thenReturn(product);
 		
-		Product savedProduct = productService.saveProduct(product);
+		assertThrows(ValidationException.class, () -> productService.saveProduct(product));
+		//Product savedProduct = productService.saveProduct(product);
 		
-		Assertions.assertThat(savedProduct).isNotNull();
+		// Assertions.assertThat(savedProduct).isNotNull();
 	}
 	
 	@Test
