@@ -9,6 +9,7 @@ import com.mockito.junit.exception.ProductNotFoundException;
 import com.mockito.junit.model.Product;
 import com.mockito.junit.repository.ProductRepository;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -18,7 +19,7 @@ public class ProductService {
 	private final ProductRepository productRepository;
 
 	@Transactional (readOnly = false)
-	public Product saveProduct(Product product) {
+	public Product saveProduct(@Valid Product product) {
 		return productRepository.save(product);
 	}
 
@@ -41,5 +42,12 @@ public class ProductService {
 	public void deleteProduct(int productId) {
 		Product product = productRepository.findById(productId).orElseThrow(()-> new ProductNotFoundException());
 		productRepository.delete(product);
+	}
+	
+	@Transactional (readOnly = false)
+	public Product updateProduct(@Valid Product newProduct, int productId) {
+		Product product = productRepository.findById(productId).orElseThrow(()-> new ProductNotFoundException());
+		newProduct.setId(productId);
+		return productRepository.save(newProduct);
 	}
 }
