@@ -25,11 +25,12 @@
 + [@RequestParam annotation.](https://github.com/KorolElizavetaR/SpringCourse/tree/master/RequestParamSMVC). *@RequestParam необходим когда указываются параметры в URL. sobaka.com/dogs?color=white. Относится к GET-запросам, т.к. эти данные сервером не обрабатываются(?). Все находится в папке test, потому что...потому что.*
 + [Spring Validator. Валидация данных.](https://github.com/KorolElizavetaR/SpringCourse/tree/master/SpringValidator) *Данные по возможности обрабатываются как со стороны сервера, так и на базе данных.* <br/>
 #### [Project 1: Библиотека. SMVC, JDBCT, Validation.](https://github.com/KorolElizavetaR/SpringCourse/tree/master/project1_library)
-### Database usage
+### JDBC
 + [JDBC](https://github.com/KorolElizavetaR/SpringCourse/tree/master/MVCnDB)
 + [JDBC. Prepared statements.](https://github.com/KorolElizavetaR/SpringCourse/tree/master/PreparedStatementSQL)
 + [JDBC Template](https://github.com/KorolElizavetaR/SpringCourse/tree/master/JDBCTemplate)
 + [HTML Dropdown list](https://github.com/KorolElizavetaR/SpringCourse/tree/master/DropdownList)
+### Hibernate
 + [Hibernate : configured by XML](https://github.com/KorolElizavetaR/SpringCourse/tree/master/Hibernate)
 + [Hibernate...Whatever that is, there's repository. And XML hibernate config](https://github.com/KorolElizavetaR/SpringCourse/tree/master/HibernateBootstraped)
 + [Hibernate configured by properties and Java-code(Almost-empty maven project), basic CRUD operations](https://github.com/KorolElizavetaR/SpringCourse/tree/master/hibernateagain)
@@ -39,6 +40,7 @@
 + [Hibernate каскадирование](https://github.com/KorolElizavetaR/SpringCourse/tree/master/HibernateCascade)
 + [Hibernate ленивая и неленивая загрузки](https://github.com/KorolElizavetaR/SpringCourse/tree/master/LazyAndEagerLoading)
 + [Hibernate CRUD + Spring MVC](https://github.com/KorolElizavetaR/SpringCourse/tree/master/HibernateSpring)
+### JPA with Repositories
 + [Spring JPA. Первое приложение](https://github.com/KorolElizavetaR/StudyRepository/tree/master/SpringJPA)
 + [Spring JPA. Работа с OneToMany. Кастомные запросы. Решение проблем с датами.](https://github.com/KorolElizavetaR/StudyRepository/tree/master/SpringJPACustomQueries)
 <br/> **После этого в курсе есть еще несколько тем: решение N+1, ENUMs, Load vs Get, Pagination And Sorting, Transient. Эти темы не хотелось бы выносить в проекты. Если необходимо воспользоваться данной информацией, искать в Notion** <br/>
@@ -50,6 +52,8 @@
 ### Spring Security
 + [Первое приложение](https://github.com/KorolElizavetaR/StudyRepository/tree/master/SpringSecurityFirstApp)
 + [Авторизация с уч. данными из бд. Обращение к кастомной странице авторизации, разлогирование, шифрование паролей](https://github.com/KorolElizavetaR/StudyRepository/tree/master/BCrypt) Замечание: класс-наследник от AuthenticationProvider используется, когда авторизация кастомная.
++ [Регистрация](https://github.com/KorolElizavetaR/StudyRepository/tree/master/Registration/src/main/java/korol/spring/security/security)
++ [Авторизация: разделение по ролям](https://github.com/KorolElizavetaR/StudyRepository/blob/master/Authorization/src/main/java/korol/spring/security/security/PersonDetails.java)
 + [Spring+REST. JWT.](https://github.com/KorolElizavetaR/StudyRepository/tree/master/InitialSetup)
 ### Docker
 [Контейнеризация приложения](https://github.com/KorolElizavetaR/StudyRepository/tree/master/DockeriseThisProject)
