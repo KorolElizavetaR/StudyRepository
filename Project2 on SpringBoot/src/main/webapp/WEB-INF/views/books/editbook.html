@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+    <title>Update Book</title>
 </head>
 <body>
-	<form th:method = "PATCH" th:action = "@{/books/{id}(id=${book_ID})}" th:object = "${book}">
-		<label for="name">Введите название книги:</label>
-		<input type="text" th:field = "*{book_name}" id = "name"/>
-		<div th:if="${#fields.hasErrors('book_name')}" th:errors="*{book_name}">book_name error</div>
+	  <form th:method="PATCH" th:action="@{/books/{id}(id=${book_ID})}">
+        <label for="name">Введите название книги:</label>
+        <input type="text" id="name" name="bookName"
+               th:value="*{book_name}" />
+        <div th:if="${#fields.hasErrors('book_name')}" th:errors="*{book_name}">
+            book_name error
+        </div>
 	<br/>
 		<label for="author">Введите автора книги:</label>
 		<input type="text" th:field = "*{book_author}" id = "author"/>

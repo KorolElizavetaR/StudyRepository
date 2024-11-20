@@ -56,10 +56,10 @@ public class Book {
 	@Transient
 	private boolean isExpired;
 	
-	public Book(String book_name, String book_author)
+	public Book(String bookName, String book_author)
 	{
 		setBook_author(book_author);
-		setBookName(book_name);
+		setBookName(bookName);
 		setExpired();
 	}
 	
